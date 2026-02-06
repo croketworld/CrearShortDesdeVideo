@@ -47,10 +47,11 @@ Partial Class Form1
         GroupBox4 = New GroupBox()
         Button2 = New Button()
         TextBox5 = New TextBox()
+        Label8 = New Label()
         ToolTip1 = New ToolTip(components)
         Label3 = New Label()
         Label7 = New Label()
-        Label8 = New Label()
+        TextBox1 = New TextBox()
         GroupBox1.SuspendLayout()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox2.SuspendLayout()
@@ -139,7 +140,6 @@ Partial Class Form1
         ' 
         Button1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Button1.BackColor = SystemColors.ActiveCaption
-        Button1.Enabled = False
         Button1.Font = New Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button1.Location = New Point(632, 568)
         Button1.Margin = New Padding(4, 5, 4, 5)
@@ -249,6 +249,7 @@ Partial Class Form1
         ' 
         DateTimePicker2.Format = DateTimePickerFormat.Time
         DateTimePicker2.Location = New Point(650, 71)
+        DateTimePicker2.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker2.Name = "DateTimePicker2"
         DateTimePicker2.Size = New Size(135, 45)
         DateTimePicker2.TabIndex = 11
@@ -260,6 +261,7 @@ Partial Class Form1
         ' 
         DateTimePicker1.Format = DateTimePickerFormat.Time
         DateTimePicker1.Location = New Point(261, 71)
+        DateTimePicker1.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker1.Name = "DateTimePicker1"
         DateTimePicker1.Size = New Size(135, 45)
         DateTimePicker1.TabIndex = 10
@@ -350,6 +352,18 @@ Partial Class Form1
         TextBox5.TabIndex = 3
         ToolTip1.SetToolTip(TextBox5, "El nuevo archivo que se va a crear")
         ' 
+        ' Label8
+        ' 
+        Label8.BackColor = Color.Transparent
+        Label8.Location = New Point(11, 81)
+        Label8.Margin = New Padding(4, 0, 4, 0)
+        Label8.Name = "Label8"
+        Label8.Size = New Size(622, 30)
+        Label8.TabIndex = 7
+        Label8.Text = "----------------------------------------------------------------------------"
+        Label8.TextAlign = ContentAlignment.TopCenter
+        Label8.Visible = False
+        ' 
         ' Label3
         ' 
         Label3.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
@@ -372,17 +386,16 @@ Partial Class Form1
         Label7.Text = "Todos los datos deben ser correctos antes de pulsar el botón"
         Label7.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' Label8
+        ' TextBox1
         ' 
-        Label8.BackColor = Color.Transparent
-        Label8.Location = New Point(11, 81)
-        Label8.Margin = New Padding(4, 0, 4, 0)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(622, 30)
-        Label8.TabIndex = 7
-        Label8.Text = "----------------------------------------------------------------------------"
-        Label8.TextAlign = ContentAlignment.TopCenter
-        Label8.Visible = False
+        TextBox1.BackColor = SystemColors.ControlDark
+        TextBox1.ForeColor = SystemColors.Info
+        TextBox1.Location = New Point(15, 568)
+        TextBox1.Multiline = True
+        TextBox1.Name = "TextBox1"
+        TextBox1.Size = New Size(590, 97)
+        TextBox1.TabIndex = 11
+        TextBox1.Visible = False
         ' 
         ' Form1
         ' 
@@ -390,6 +403,7 @@ Partial Class Form1
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.ControlDarkDark
         ClientSize = New Size(876, 684)
+        Controls.Add(TextBox1)
         Controls.Add(Label7)
         Controls.Add(Label3)
         Controls.Add(GroupBox4)
@@ -400,6 +414,7 @@ Partial Class Form1
         Font = New Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         ForeColor = SystemColors.Info
         Margin = New Padding(4, 5, 4, 5)
+        MaximizeBox = False
         MaximumSize = New Size(898, 970)
         MinimumSize = New Size(898, 740)
         Name = "Form1"
@@ -416,6 +431,7 @@ Partial Class Form1
         GroupBox4.ResumeLayout(False)
         GroupBox4.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
@@ -445,5 +461,6 @@ Partial Class Form1
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
+    Friend WithEvents TextBox1 As TextBox
 
 End Class

@@ -1,13 +1,82 @@
 ﻿Imports System.Drawing.Drawing2D
+Imports System.IO
+Imports System.Net
+Imports System.Net.Http
 Imports System.Runtime.InteropServices
 Imports System.Security
 
 Public Class Form1
 
     Private duracionVideoOriginal As TimeSpan
+
+#Region "la chicha"
+
     Public Sub Hacer()
+        Dim cmf As New ComandoFFMPEG(
+            TextBox2.Text,
+            TextBox3.Text,
+            TextBox5.Text,
+            TimeSpan.FromSeconds(NumericUpDown1.Value),
+            TimeSpan.FromSeconds(NumericUpDown2.Value))
+
+        Dim ps As New ProcessStartInfo("cmd", cmf.ToString()) With {
+            .WindowStyle = ProcessWindowStyle.Hidden,
+            .UseShellExecute = False,
+            .CreateNoWindow = False,
+            .WorkingDirectory = My.Application.Info.DirectoryPath,
+            .RedirectStandardOutput = True,
+            .RedirectStandardError = True
+        }
+        Dim fallido As Boolean = True
+        Dim exe As Exception = Nothing
+        Try
+            Dim p = Process.Start(ps)
+            Dim output = p.StandardOutput.ReadToEnd()
+            Dim fallico = p.StandardError.ReadToEnd()
+            If fallico IsNot Nothing Then
+                Throw New ApplicationException("Error ejecutando tarea", New ApplicationException(fallico))
+            End If
+            fallido = False
+        Catch ex As Exception
+            exe = ex
+        End Try
+        If fallido Or exe IsNot Nothing Then
+            Dim mensaje As String = "Error al ejecutar el comando ffpmeg."
+            If exe IsNot Nothing Then
+                mensaje += "Detalles del error:" & Environment.NewLine
+                mensaje += exe.Message
+                If exe.InnerException IsNot Nothing Then
+                    mensaje += Environment.NewLine
+                    mensaje += exe.InnerException.Message
+                End If
+
+            End If
+            TextBox1.Text = mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
+            TextBox1.Visible = True
+            MsgBox(mensaje, MsgBoxStyle.YesNo)
+        Else
+            Finalizado()
+        End If
+
 
     End Sub
+
+
+    Private Async Function Descargarffmpeg() As Task
+        Dim url As String = My.Settings.Urlffmpeg
+        Dim wc As New HttpClient
+        Dim descarga = Await wc.GetAsync(url, HttpCompletionOption.ResponseContentRead)
+        If descarga.IsSuccessStatusCode Then
+            Dim fs As IO.FileStream
+            Try
+                fs = New IO.FileStream(My.Settings.FfmpegPath, IO.FileMode.Create)
+                descarga.Content.CopyTo(fs, Nothing, Nothing)
+            Catch ex As Exception
+
+            End Try
+
+        End If
+    End Function
 
     Private Sub ComprobarTodoOkPaDarle()
         Dim ok As Boolean =
@@ -18,17 +87,18 @@ Public Class Form1
             NumericUpDown2.Value <= duracionVideoOriginal.TotalSeconds) And
             NumericUpDown1.Value < NumericUpDown2.Value
 
-        Button1.Enabled = ok
-
+        If ok Then
+            Hacer()
+        End If
 
 
     End Sub
-
 
     Public Sub Finalizado()
         RestaurarColorValidadores()
         TextBox5.Focus()
     End Sub
+#End Region
 
 
 #Region "funciones auxiliares"
@@ -38,12 +108,11 @@ Public Class Form1
         Dim result As String = ""
         If (IO.File.Exists(basename)) Then
             Dim fi As New IO.FileInfo(basename)
-            Dim nn As String = fi.Name.Replace(fi.Extension, String.Format("-{0}{1}", DateTime.Now.ToShortDateString(), fi.Extension))
+            Dim nn As String = fi.Name.Replace(fi.Extension, String.Format("-{0}{1}", DateTime.Now.ToString("ddMMyy-HHmmss"), fi.Extension))
             result = fi.FullName.Replace(fi.Name, nn)
         End If
         Return result
     End Function
-
     Private Sub ObtenerDuracionTotal()
 
         Dim dt As TimeSpan = TimeSpan.MinValue
@@ -62,6 +131,9 @@ Public Class Form1
         End If
 
     End Sub
+    Private Function MinDate() As Date
+        Return Date.Today
+    End Function
 
 #End Region
 
@@ -75,7 +147,8 @@ Public Class Form1
         Label4.Visible = False
         Label8.ForeColor = SystemColors.Info
         Label8.Visible = False
-
+        TextBox1.Visible = False
+        TextBox1.Text = ""
     End Sub
     ''' <summary>
     ''' Comprueba que el archivo de vídeo seleccionado existe
@@ -111,7 +184,7 @@ Public Class Form1
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub TextBox5_TextChanged(sender As Object, e As EventArgs) Handles TextBox5.TextChanged
-        If IO.File.Exists(TextBox5.Text) Then
+        If IO.Path.IsPathFullyQualified(TextBox5.Text) Then
             Label8.ForeColor = Color.DarkSeaGreen
             Label8.Visible = True
         Else
@@ -121,6 +194,7 @@ Public Class Form1
     End Sub
 
     Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
+        If duracionVideoOriginal.TotalSeconds <= 0 Then Exit Sub
         If duracionVideoOriginal > TimeSpan.MinValue And NumericUpDown2.Value >= duracionVideoOriginal.TotalSeconds Then
             NumericUpDown2.BackColor = Color.MediumVioletRed
             ToolTip1.SetToolTip(NumericUpDown2, $"No puedes establecer un tiempo superior a la duración del vídeo.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:HH:mm:ss}")
@@ -145,8 +219,6 @@ Public Class Form1
 
 #End Region
 
-
-
 #Region "acciones de usuario en formulario"
 
     ''' <summary>
@@ -154,10 +226,13 @@ Public Class Form1
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        'autodescarga
+    Private Async Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        My.Settings.FfmpegPath = Path.Combine(My.Application.Info.DirectoryPath, "ffmpeg.exe")
+        TextBox2.Text = My.Settings.FfmpegPath
+        Await Descargarffmpeg()
 
     End Sub
+
 
     ''' <summary>
     ''' Búsqueda automática en las rutas típicas y las carpetas del sistema cómo Program Files y esas cosas, un barrido ligero por el entorno buscándo algo concreto
@@ -166,6 +241,12 @@ Public Class Form1
     ''' <param name="e"></param>
     ''' <remarks>Es cómo preguntárle a Windows "illo, mhíraten-loh borsilloh a-véh ji ëthá er ffmpeg de los cohöneh puáï"</remarks>
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim rutaJuntoAmi As String = Path.Combine(My.Application.Info.DirectoryPath, "ffmpeg.exe")
+        If IO.File.Exists(rutaJuntoAmi) Then
+            TextBox2.Text = rutaJuntoAmi
+            Exit Sub
+        End If
+
         'resultados
         Dim ffmpegEncontrado As Boolean = False
         Dim rutaFfmpeg As String = String.Empty 'como el corazon de mi ex
@@ -271,11 +352,12 @@ Public Class Form1
         Dim tiempo As Boolean = CheckBox1.Checked
         DateTimePicker1.Visible = tiempo
         DateTimePicker2.Visible = tiempo
+        Dim md = MinDate()
         If DateTimePicker1.Visible = True Then
-            DateTimePicker1.Value = DateTime.MinValue.Add(TimeSpan.FromSeconds(NumericUpDown1.Value))
+            DateTimePicker1.Value = md.Add(TimeSpan.FromSeconds(NumericUpDown1.Value))
         End If
         If DateTimePicker2.Visible = True Then
-            DateTimePicker2.Value = DateTime.MinValue.Add(TimeSpan.FromSeconds(NumericUpDown2.Value))
+            DateTimePicker2.Value = md.Add(TimeSpan.FromSeconds(NumericUpDown2.Value))
         End If
 
     End Sub
@@ -283,6 +365,7 @@ Public Class Form1
 #End Region
 
 #Region "datps paquí y pallá"
+
     Private Sub DateTimePicker2_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker2.ValueChanged
         Dim ts As Integer = 0
         With DateTimePicker2
@@ -292,7 +375,6 @@ Public Class Form1
         End With
         NumericUpDown2.Value = ts
     End Sub
-
 
     Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
         Dim ts As Integer = 0
@@ -304,6 +386,24 @@ Public Class Form1
         NumericUpDown1.Value = ts
     End Sub
 
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
+    Public Sub New()
+        InitializeComponent()
+
+        AddHandler Button1.Click, AddressOf Hacer
+        DateTimePicker1.MinDate = MinDate()
+        DateTimePicker2.MinDate = MinDate()
+
+        DateTimePicker1.Value = MinDate()
+        DateTimePicker2.Value = MinDate()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ComprobarTodoOkPaDarle()
+
+    End Sub
 #End Region
 
 
@@ -314,11 +414,6 @@ Public Class Form1
     '-c copy "C:\Users\<>\Videos\nombre del resultado.mp4"
 
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AddHandler Button1.Click, AddressOf Hacer
-        DateTimePicker1.Value = DateTime.MinValue
-        DateTimePicker2.Value = DateTime.MinValue
-    End Sub
 
 
 End Class

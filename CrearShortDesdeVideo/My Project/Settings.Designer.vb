@@ -112,6 +112,18 @@ Namespace My
                 Me("DirectorioVideos") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://mega.nz/file/apRVzCQL#gn8nUrON2iWQ9VsfByZ4fUeVecsP-moreHXeQOkn664")>  _
+        Public Property Urlffmpeg() As String
+            Get
+                Return CType(Me("Urlffmpeg"),String)
+            End Get
+            Set
+                Me("Urlffmpeg") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

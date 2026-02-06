@@ -14,5 +14,8 @@
     <Setting Name="DirectorioVideos" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Urlffmpeg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://mega.nz/file/apRVzCQL#gn8nUrON2iWQ9VsfByZ4fUeVecsP-moreHXeQOkn664</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
