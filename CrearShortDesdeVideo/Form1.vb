@@ -62,21 +62,13 @@ Public Class Form1
     End Sub
 
 
-    Private Async Function Descargarffmpeg() As Task
-        Dim url As String = My.Settings.Urlffmpeg
-        Dim wc As New HttpClient
-        Dim descarga = Await wc.GetAsync(url, HttpCompletionOption.ResponseContentRead)
-        If descarga.IsSuccessStatusCode Then
-            Dim fs As IO.FileStream
-            Try
-                fs = New IO.FileStream(My.Settings.FfmpegPath, IO.FileMode.Create)
-                descarga.Content.CopyTo(fs, Nothing, Nothing)
-            Catch ex As Exception
+    Private Sub Descargarffmpeg()
+        Dim url As New Uri(My.Settings.Urlffmpeg)
+        Using wc As New WebClient
+            wc.DownloadFileAsync(url, My.Settings.FfmpegPath)
+        End Using
 
-            End Try
-
-        End If
-    End Function
+    End Sub
 
     Private Sub ComprobarTodoOkPaDarle()
         Dim ok As Boolean =
@@ -229,9 +221,20 @@ Public Class Form1
     Private Async Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         My.Settings.FfmpegPath = Path.Combine(My.Application.Info.DirectoryPath, "ffmpeg.exe")
         TextBox2.Text = My.Settings.FfmpegPath
-        Await Descargarffmpeg()
-
+        TextBox1.Text = "Descargando ffmpeg.."
+        TextBox1.Visible = True
+        Descargarffmpeg()
+        TextBox1.Text = "ffmpeg descargado"
+        Await EsperaTresSegundosYEscondeConsola()
     End Sub
+
+    Private Async Function EsperaTresSegundosYEscondeConsola() As Task
+        Await Task.Run(Function()
+                           System.Threading.Thread.Sleep(3000)
+                           Return Task.CompletedTask
+                       End Function)
+        TextBox1.Visible = False
+    End Function
 
 
     ''' <summary>

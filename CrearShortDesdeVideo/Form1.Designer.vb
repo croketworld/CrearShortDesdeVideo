@@ -367,12 +367,13 @@ Partial Class Form1
         ' Label3
         ' 
         Label3.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        Label3.Location = New Point(0, 701)
+        Label3.Location = New Point(10, 712)
         Label3.Margin = New Padding(4, 0, 4, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(614, 233)
+        Label3.Size = New Size(848, 193)
         Label3.TabIndex = 9
-        Label3.Text = "⠀⠀⠀⠀⠀⠀⣠⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀" & vbCrLf & "⠀⠀⠀⠀⢀⠎⡇⠀⡇⠀⠀⠀⢠⠤⠒⠈⠁⠀⠀⠀⠙⢦⡀⠀⠀⠀⢀⡠⠐⠉" & vbCrLf & "⠀⠀⢀⠜⠀⠀⢳⣸⠀⠀⠀⠀⠈⡄⠀⣠⠴⠒⠀⠀⠀⠀⠈⢳⣴⠋⠁⠀⠀⠀" & vbCrLf & "⡤⠊⠁⠀⠀⠀⠀⣹⡩⠟⢋⡤⢺⠉⠀⠀⠀⣀⡀⠀⢀⡴⠋⠀⠈⠱⡄⠀⠀⠀" & vbCrLf & "⠀⢀⡤⠤⠂⠚⠉⣇⡴⠋⠁⠀⣇⠴⠀⠉⠁⡰⠚⠉⠀⠀⠀⠀⠀⣀⠽⠀⠀⠀" & vbCrLf & "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠒⠒⠋⠉⠁⠀⠀"
+        Label3.Text = " +-+-+-+-+-+-+-+-+-+-+-+" & vbCrLf & " |C|r|o|k|e|t|W|o|r|l|d|" & vbCrLf & " +-+-+-+-+-+-+-+-+-+-+-+"
+        Label3.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label7
         ' 
