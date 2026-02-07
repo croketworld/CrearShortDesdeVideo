@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Program Files\ffmpeg\bin")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Program Files\ffmpeg\bin\ffmpeg.exe")>  _
         Public Property FfmpegPath() As String
             Get
                 Return CType(Me("FfmpegPath"),String)
@@ -115,7 +115,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://mega.nz/file/apRVzCQL#gn8nUrON2iWQ9VsfByZ4fUeVecsP-moreHXeQOkn664")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://sourceforge.net/projects/anunnakiproject/files/ffmpeg.exe/download")>  _
         Public Property Urlffmpeg() As String
             Get
                 Return CType(Me("Urlffmpeg"),String)

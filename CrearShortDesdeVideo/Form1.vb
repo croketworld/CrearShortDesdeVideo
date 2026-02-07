@@ -63,27 +63,70 @@ Public Class Form1
 
 
     Private Sub Descargarffmpeg()
-        Dim url As New Uri(My.Settings.Urlffmpeg)
-        Using wc As New WebClient
-            wc.DownloadFileAsync(url, My.Settings.FfmpegPath)
-        End Using
+        Dim wc As New WebClient
+        AddHandler wc.DownloadFileCompleted, AddressOf Descargadoffmpeg
+        wc.DownloadFileAsync(New Uri(My.Settings.Urlffmpeg), My.Settings.FfmpegPath)
 
     End Sub
+    Private Sub Descargadoffmpeg()
 
+    End Sub
     Private Sub ComprobarTodoOkPaDarle()
-        Dim ok As Boolean =
-            IO.File.Exists(TextBox3.Text) And
-            IO.Path.IsPathFullyQualified(TextBox5.Text) And
-            IO.File.Exists(TextBox2.Text) And
-            (duracionVideoOriginal > TimeSpan.MinValue And
-            NumericUpDown2.Value <= duracionVideoOriginal.TotalSeconds) And
-            NumericUpDown1.Value < NumericUpDown2.Value
+        Dim ffmpegEsta As Boolean = IO.File.Exists(TextBox2.Text)
+        If ffmpegEsta = False Then
+            Falta_ffmpeg()
+            Exit Sub
+        End If
 
-        If ok Then
-            Hacer()
+        Dim videoorigenesta As Boolean = IO.File.Exists(TextBox3.Text)
+        If videoorigenesta = False Then
+            Falta_videoOrigen()
+            Exit Sub
+        End If
+
+        Dim archivosalidacoherente As Boolean = IO.Path.IsPathFullyQualified(TextBox5.Text)
+        If archivosalidacoherente = False Then
+            Falta_archivosalidacoherente()
+            Exit Sub
+        End If
+        If NumericUpDown1.Value < NumericUpDown2.Value Then
+            Falta_inicioFinIncoherente()
+            Exit Sub
         End If
 
 
+
+        'comprobar que no se ha puesto un tiempo oseaaaa eXaJeraO
+        Dim duracionNoObtenida As Boolean = (duracionVideoOriginal <= TimeSpan.Zero)
+
+        If duracionNoObtenida = False And
+            (NumericUpDown2.Value > duracionVideoOriginal.TotalSeconds) Then
+            Falta_FinalSuperiorADuracion()
+            Exit Sub
+        End If
+
+        Hacer()
+
+    End Sub
+
+    Private Sub Falta_FinalSuperiorADuracion()
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub Falta_inicioFinIncoherente()
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub Falta_archivosalidacoherente()
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub Falta_videoOrigen()
+        Throw New NotImplementedException()
+    End Sub
+
+    Private Sub Falta_ffmpeg()
+        Throw New NotImplementedException()
     End Sub
 
     Public Sub Finalizado()
@@ -95,6 +138,11 @@ Public Class Form1
 
 #Region "funciones auxiliares"
 
+    ''' <summary>
+    ''' Te regalo un nombre nuevo único añadíendole la marca de tiempo
+    ''' </summary>
+    ''' <returns></returns>
+
     Private Function ObtenerNombreSugerido() As String
         Dim basename As String = TextBox3.Text
         Dim result As String = ""
@@ -105,13 +153,18 @@ Public Class Form1
         End If
         Return result
     End Function
+
+    ''' <summary>
+    ''' le voy ar güindous y le digo: "olamiamor,tengokablarcontigo.. que yo no quiéro ser tu amánte, que yo quiero ser argo más.."
+    ''' </summary>
+    ''' <remarks></remarks>
     Private Sub ObtenerDuracionTotal()
 
         Dim dt As TimeSpan = TimeSpan.MinValue
         Try
             dt = GetVideoFileDuration.GetVideoDuration(TextBox3.Text)
         Catch ex As Exception
-
+            TextBox1.AppendText(ex.Message)
         End Try
         If dt <> TimeSpan.MinValue Then
             duracionVideoOriginal = dt
@@ -123,6 +176,7 @@ Public Class Form1
         End If
 
     End Sub
+
     Private Function MinDate() As Date
         Return Date.Today
     End Function
@@ -151,6 +205,7 @@ Public Class Form1
         If IO.File.Exists(TextBox3.Text) Then
             Label4.ForeColor = Color.DarkSeaGreen
             Label4.Visible = True
+            ObtenerDuracionTotal()
         Else
             Label4.ForeColor = Color.MediumVioletRed
             Label4.Visible = True
@@ -265,7 +320,7 @@ Public Class Form1
             Dim path As String = Environment.GetFolderPath(directoriobase)
             For Each variante As String In variantes
                 'este código es una chapuza que nada tiene que ver con mi trabajao real ¿un bucle for dentro de otro? ¿¡es que nadie va a pensar en la complejidad ciclomática!? y en el código del evento del botón directamente, mi yo profesional me abofetearía, pero ésto es una herramienta tonta y apenas tiene repercusión para las cpus de hoy día. Pero vamos que si eres programador y crees que éste código es chapuzero, estoy al 100% contigo, es una chapuza
-                Dim ruta As String = IO.Path.Combine(path, variante)
+                Dim ruta As String = IO.Path.Join(path, variante)
                 If IO.File.Exists(ruta) Then
                     'DING DING DING!! SUENA LA FLAUTA!
                     ffmpegEncontrado = True
@@ -277,8 +332,6 @@ Public Class Form1
         Next
         'si llegamos aquí, es que tu madre es gorda
         TextBox2.Text = rutaFfmpeg
-
-
     End Sub
 
     ''' <summary>
@@ -296,6 +349,7 @@ Public Class Form1
             Dim dlgsres As DialogResult = .ShowDialog()
             If dlgsres = DialogResult.OK Then
                 TextBox2.Text = .FileName
+
             End If
         End With
 
@@ -341,6 +395,7 @@ Public Class Form1
         If dlgres = DialogResult.OK Then
             TextBox3.Text = ofd.FileName
             My.Settings.DirectorioVideos = New IO.FileInfo(ofd.FileName).DirectoryName
+            ObtenerDuracionTotal()
         End If
 
 
@@ -390,8 +445,12 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextBox2.Text = My.Settings.FfmpegPath
+        DateTimePicker2.Value = Date.Today.Add(My.Settings.DuracionPredeterminada)
 
     End Sub
+
+
     Public Sub New()
         InitializeComponent()
 

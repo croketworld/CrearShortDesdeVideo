@@ -1,36 +1,46 @@
-﻿Imports System.Runtime.InteropServices
+﻿Imports System.IO
+Imports System.Runtime.InteropServices
+Imports System.Security.Cryptography.Pkcs
+Imports System.Text.RegularExpressions
 
 Public Class GetVideoFileDuration
+
     Public Shared Function GetVideoDuration(filePath As String) As TimeSpan
-        Dim CLSID_FilterGraph As New Guid("e436ebb3-524f-11ce-9f53-0020af0ba770")
-        Dim IID_IGraphBuilder As New Guid("56a868b1-0ad4-11ce-b03a-0020af0ba770")
+        Dim ps As New ProcessStartInfo(My.Settings.FfmpegPath, $"-i {Chr(34)}{filePath}{Chr(34)}")
+        ps.UseShellExecute = False
+        ps.WorkingDirectory = My.Application.Info.DirectoryPath
+        ps.RedirectStandardOutput = True
+        ps.RedirectStandardError = True
+        Dim duracion As String = ""
+        Dim resultado As TimeSpan = TimeSpan.Zero
+        Try
 
-        Dim graphPtr As IntPtr = Marshal.AllocCoTaskMem(Marshal.SizeOf(GetType(IntPtr)))
-        Dim hr As Integer = CoCreateInstance(CLSID_FilterGraph, IntPtr.Zero, 1, IID_IGraphBuilder, graphPtr)
+            Dim p As Process = Process.Start(ps)
+            Dim sr As StreamReader = p.StandardOutput
+            Dim sss As Stream = sr.BaseStream
+            Dim sr2 As New StreamReader(sss)
+            Dim ccc As String = sr2.ReadToEnd()
+            If sr.EndOfStream Then
 
-        Dim graph As Object = Marshal.GetObjectForIUnknown(graphPtr)
-        Dim renderResult As Integer = DirectCast(graph, Object).GetType().InvokeMember("RenderFile", Reflection.BindingFlags.InvokeMethod, Nothing, graph, {filePath, Nothing})
 
-        Dim seekingPtr As IntPtr = Marshal.AllocCoTaskMem(Marshal.SizeOf(GetType(IntPtr)))
-        Dim IID_IMediaSeeking As Guid = New Guid("56a86895-0ad4-11ce-b03a-0020af0ba770")
-        hr = QueryInterface(graphPtr, IID_IMediaSeeking, seekingPtr)
+            End If
+            Dim contenido = sr.ReadToEnd().Trim()
+            p.WaitForExit()
+            Dim posi As Integer = contenido.IndexOf("Duration:") + 10
+            duracion = contenido.Substring(posi, 8).Trim()
+            'Duration: 00:02:59.02
+            If duracion.Contains(":"c) Then
+                Dim partes() As String = duracion.Split(":")
+                If partes.Length = 3 Then
+                    Dim horas As Integer = partes(0)
+                    Dim minutos As Integer = partes(1)
+                    Dim segundos As Integer = partes(2)
+                    resultado = New TimeSpan(horas, minutos, segundos)
+                End If
+            End If
+        Catch ex As Exception
 
-        Dim duration As Long = 0
-        Dim seekObj As Object = Marshal.GetObjectForIUnknown(seekingPtr)
-        Dim durationResult As Integer = seekObj.GetType().InvokeMember("GetDuration", Reflection.BindingFlags.InvokeMethod, Nothing, seekObj, {duration})
-
-        Marshal.ReleaseComObject(seekObj)
-        Marshal.ReleaseComObject(graph)
-
-        Return TimeSpan.FromTicks(duration * 10)
+        End Try
+        Return resultado
     End Function
-
-    <DllImport("ole32.dll")>
-    Private Shared Function CoCreateInstance(ByRef rclsid As Guid, pUnkOuter As IntPtr, dwClsContext As Integer, ByRef riid As Guid, <MarshalAs(UnmanagedType.IUnknown)> ByRef ppv As IntPtr) As Integer
-    End Function
-
-    <DllImport("ole32.dll")>
-    Private Shared Function QueryInterface(pUnk As IntPtr, ByRef riid As Guid, <MarshalAs(UnmanagedType.IUnknown)> ByRef ppv As IntPtr) As Integer
-    End Function
-
 End Class
