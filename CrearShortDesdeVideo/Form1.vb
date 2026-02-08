@@ -1,4 +1,5 @@
-﻿Imports System.Drawing.Drawing2D
+﻿Imports System.ComponentModel
+Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Net
 Imports System.Net.Http
@@ -8,17 +9,15 @@ Imports System.Security
 Public Class Form1
 
     Private duracionVideoOriginal As TimeSpan
-
+    Private bg As BackgroundWorker
+    Private realizando As Boolean = False
 #Region "la chicha"
 
-    Public Sub Hacer()
-        Dim cmf As New ComandoFFMPEG(
-            TextBox2.Text,
-            TextBox3.Text,
-            TextBox5.Text,
-            TimeSpan.FromSeconds(NumericUpDown1.Value),
-            TimeSpan.FromSeconds(NumericUpDown2.Value))
-        Dim comandoTxt As String = cmf.ToString()
+
+    Private Async Sub HacerBackground(sender As Object, e As System.ComponentModel.DoWorkEventArgs)
+        Dim comandoTxt As String = CType(e.Argument, String)
+        Dim fallido As Boolean = True
+        Dim exe As Exception = Nothing
         Dim ps As New ProcessStartInfo("cmd", comandoTxt) With {
             .WindowStyle = ProcessWindowStyle.Hidden,
             .UseShellExecute = False,
@@ -27,14 +26,27 @@ Public Class Form1
             .RedirectStandardOutput = True,
             .RedirectStandardError = True
         }
-        Dim fallido As Boolean = True
-        Dim exe As Exception = Nothing
+        Dim bgw As BackgroundWorker = CType(sender, BackgroundWorker)
+        bgw.ReportProgress(10, $"Iniciando proceso con comando {Environment.NewLine}{comandoTxt}{Environment.NewLine}")
         Try
             Dim p = Process.Start(ps)
-            Dim output = p.StandardOutput.ReadToEnd()
-            Dim fallico = p.StandardError.ReadToEnd()
-            If fallico IsNot Nothing Then
-                Throw New ApplicationException("Error ejecutando tarea", New ApplicationException(fallico))
+            Dim output As String = String.Empty
+            Dim fallico As String = String.Empty
+            While (bg.CancellationPending = False)
+                If bg.CancellationPending = True Or e.Cancel Then
+                    bg.CancelAsync()
+                    e.Result = New ResultadoTarea()
+                    Exit Sub
+                End If
+                output = Await p.StandardOutput.ReadToEndAsync()
+                fallico = p.StandardError.ReadToEnd()
+                If fallico IsNot Nothing Then
+                    Throw New ApplicationException("Error ejecutando tarea", New ApplicationException(fallico))
+                End If
+                If String.IsNullOrEmpty(output) = False Then Exit While
+            End While
+            If String.IsNullOrEmpty(output) = False Then
+                bgw.ReportProgress(90, $"Output de ffmpeg:{Environment.NewLine}{output}{Environment.NewLine}")
             End If
             fallido = False
         Catch ex As Exception
@@ -43,22 +55,73 @@ Public Class Form1
         If fallido Or exe IsNot Nothing Then
             Dim mensaje As String = "Error al ejecutar el comando ffpmeg."
             If exe IsNot Nothing Then
-                mensaje += "Detalles del error:" & Environment.NewLine
+                mensaje += $"{Environment.NewLine}Detalles del error:{Environment.NewLine}"
                 mensaje += exe.Message
                 If exe.InnerException IsNot Nothing Then
-                    mensaje += Environment.NewLine
-                    mensaje += exe.InnerException.Message
+                    mensaje += $"{Environment.NewLine}{exe.InnerException.Message}"
                 End If
-                mensaje += $"El comando ejecutado es: {Environment.NewLine}{comandoTxt}"
+                mensaje += $"{Environment.NewLine}El comando ejecutado es: {Environment.NewLine}{comandoTxt}"
             End If
-            TextBox1.Text = mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
-            TextBox1.Visible = True
+            e.Result = New ResultadoTarea(False, mensaje)
+        Else
+            e.Result = New ResultadoTarea(True)
+        End If
+
+    End Sub
+
+    Private Sub HacerBackground_progreso(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs)
+        Dim mensaje As String = CType(e.ProgressPercentage, String)
+        TextBox1.Text += mensaje
+
+    End Sub
+    Private Sub HacerBackground_finalizado(sender As Object, e As RunWorkerCompletedEventArgs)
+        Button1.Text = "Crear video corto"
+        Button1.BackColor = SystemColors.ActiveCaption
+        realizando = False
+
+        If e.Cancelled Then
 
         Else
-            Finalizado()
+            Dim partes As ResultadoTarea = CType(e.Result, ResultadoTarea)
+            TextBox1.Text += partes.Mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
+            TextBox1.Text += "Resultado de la operación correcta? " & partes.OK
+            If partes.OK Then
+                Finalizado()
+            End If
+        End If
+
+    End Sub
+
+
+    Public Sub Hacer()
+
+        If realizando = False Then
+            Button1.Text = "Cancelar"
+            Button1.BackColor = SystemColors.Highlight
+            realizando = True
+        Else
+            bg?.CancelAsync()
         End If
 
 
+        Dim cmf As New ComandoFFMPEG(
+            TextBox2.Text,
+            TextBox3.Text,
+            TextBox5.Text,
+            TimeSpan.FromSeconds(NumericUpDown1.Value),
+            TimeSpan.FromSeconds(NumericUpDown2.Value))
+        Dim comandoTxt As String = cmf.ToString()
+        TextBox1.Visible = True
+        bg = New BackgroundWorker With {
+            .WorkerReportsProgress = True,
+            .WorkerSupportsCancellation = True
+        }
+
+        AddHandler bg.DoWork, AddressOf HacerBackground
+        AddHandler bg.ProgressChanged, AddressOf HacerBackground_progreso
+        AddHandler bg.RunWorkerCompleted, AddressOf HacerBackground_finalizado
+
+        bg.RunWorkerAsync(comandoTxt)
     End Sub
 
 
@@ -72,6 +135,7 @@ Public Class Form1
         TextBox1.Text = "ffmpeg descargado correctamente"
     End Sub
     Private Sub ComprobarTodoOkPaDarle()
+        TextBox1.Text = "Iniciando comprobaciones previas"
         Dim ffmpegEsta As Boolean = IO.File.Exists(TextBox2.Text)
         If ffmpegEsta = False Then
             Falta_ffmpeg()
@@ -93,9 +157,6 @@ Public Class Form1
             Falta_inicioFinIncoherente()
             Exit Sub
         End If
-
-
-
         'comprobar que no se ha puesto un tiempo oseaaaa eXaJeraO
         Dim duracionNoObtenida As Boolean = (duracionVideoOriginal <= TimeSpan.Zero)
 
@@ -104,11 +165,10 @@ Public Class Form1
             Falta_FinalSuperiorADuracion()
             Exit Sub
         End If
-
+        TextBox1.Text = "Validaciones previas pasadas, iniciando proceso"
         Hacer()
 
     End Sub
-
 
     Public Sub Finalizado()
         RestaurarColorValidadores()
