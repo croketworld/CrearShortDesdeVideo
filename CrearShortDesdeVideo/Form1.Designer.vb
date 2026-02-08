@@ -390,10 +390,12 @@ Partial Class Form1
         ' TextBox1
         ' 
         TextBox1.BackColor = SystemColors.ControlDark
+        TextBox1.Font = New Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TextBox1.ForeColor = SystemColors.Info
         TextBox1.Location = New Point(15, 568)
         TextBox1.Multiline = True
         TextBox1.Name = "TextBox1"
+        TextBox1.ScrollBars = ScrollBars.Both
         TextBox1.Size = New Size(590, 97)
         TextBox1.TabIndex = 11
         TextBox1.Visible = False

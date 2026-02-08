@@ -11,8 +11,8 @@ Public Class Form1
     Private duracionVideoOriginal As TimeSpan
     Private bg As BackgroundWorker
     Private realizando As Boolean = False
-#Region "la chicha"
 
+#Region "la chicha"
 
     Private Async Sub HacerBackground(sender As Object, e As System.ComponentModel.DoWorkEventArgs)
         Dim comandoTxt As String = CType(e.Argument, String)
@@ -70,24 +70,23 @@ Public Class Form1
     End Sub
 
     Private Sub HacerBackground_progreso(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs)
-        Dim mensaje As String = CType(e.ProgressPercentage, String)
-        TextBox1.Text += mensaje
+        Dim mensaje As String = CType(e.UserState, String)
+        TextBox1.Text += Environment.NewLine & mensaje & Environment.NewLine
 
     End Sub
     Private Sub HacerBackground_finalizado(sender As Object, e As RunWorkerCompletedEventArgs)
         Button1.Text = "Crear video corto"
         Button1.BackColor = SystemColors.ActiveCaption
         realizando = False
-
+        Dim partes As ResultadoTarea = CType(e.Result, ResultadoTarea)
+        If partes Is Nothing Then partes = New ResultadoTarea
         If e.Cancelled Then
-
-        Else
-            Dim partes As ResultadoTarea = CType(e.Result, ResultadoTarea)
-            TextBox1.Text += partes.Mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
-            TextBox1.Text += "Resultado de la operación correcta? " & partes.OK
-            If partes.OK Then
-                Finalizado()
-            End If
+            partes.Mensaje = $"{Environment.NewLine}cancelado por el usuario{Environment.NewLine}"
+        End If
+        TextBox1.Text += partes.Mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
+        TextBox1.Text += "Resultado de la operación correcta? " & partes.OK
+        If partes.OK Then
+            Finalizado()
         End If
 
     End Sub
@@ -153,7 +152,7 @@ Public Class Form1
             Falta_archivosalidacoherente()
             Exit Sub
         End If
-        If NumericUpDown1.Value < NumericUpDown2.Value Then
+        If NumericUpDown1.Value > NumericUpDown2.Value Then
             Falta_inicioFinIncoherente()
             Exit Sub
         End If
