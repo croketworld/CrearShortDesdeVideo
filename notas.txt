@@ -1,6 +1,5 @@
    TODO
   - revisar flujos y acciones    
-  - ¿descargar de mega o usar otro sitio?
   - pasar textos a settings (para luego pasárlo a traducciones si eso)  
     
    

@@ -18,8 +18,8 @@ Public Class Form1
             TextBox5.Text,
             TimeSpan.FromSeconds(NumericUpDown1.Value),
             TimeSpan.FromSeconds(NumericUpDown2.Value))
-
-        Dim ps As New ProcessStartInfo("cmd", cmf.ToString()) With {
+        Dim comandoTxt As String = cmf.ToString()
+        Dim ps As New ProcessStartInfo("cmd", comandoTxt) With {
             .WindowStyle = ProcessWindowStyle.Hidden,
             .UseShellExecute = False,
             .CreateNoWindow = False,
@@ -49,11 +49,11 @@ Public Class Form1
                     mensaje += Environment.NewLine
                     mensaje += exe.InnerException.Message
                 End If
-
+                mensaje += $"El comando ejecutado es: {Environment.NewLine}{comandoTxt}"
             End If
             TextBox1.Text = mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
             TextBox1.Visible = True
-            MsgBox(mensaje, MsgBoxStyle.YesNo)
+
         Else
             Finalizado()
         End If
@@ -69,7 +69,7 @@ Public Class Form1
 
     End Sub
     Private Sub Descargadoffmpeg()
-
+        TextBox1.Text = "ffmpeg descargado correctamente"
     End Sub
     Private Sub ComprobarTodoOkPaDarle()
         Dim ffmpegEsta As Boolean = IO.File.Exists(TextBox2.Text)
@@ -109,25 +109,6 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Falta_FinalSuperiorADuracion()
-        Throw New NotImplementedException()
-    End Sub
-
-    Private Sub Falta_inicioFinIncoherente()
-        Throw New NotImplementedException()
-    End Sub
-
-    Private Sub Falta_archivosalidacoherente()
-        Throw New NotImplementedException()
-    End Sub
-
-    Private Sub Falta_videoOrigen()
-        Throw New NotImplementedException()
-    End Sub
-
-    Private Sub Falta_ffmpeg()
-        Throw New NotImplementedException()
-    End Sub
 
     Public Sub Finalizado()
         RestaurarColorValidadores()
@@ -159,7 +140,7 @@ Public Class Form1
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ObtenerDuracionTotal()
-
+        Exit Sub 'temporalmente deshabilitado, ésta función secundaria requiere más tiempo del que deseo dárle ahora mismo
         Dim dt As TimeSpan = TimeSpan.MinValue
         Try
             dt = GetVideoFileDuration.GetVideoDuration(TextBox3.Text)
@@ -250,6 +231,33 @@ Public Class Form1
         End If
     End Sub
 
+
+    Private Sub Falta_FinalSuperiorADuracion()
+        TextBox1.Text = "Corrige datos: La duración establecida es superior a la duración del vídeo original."
+        TextBox1.Visible = True
+    End Sub
+
+    Private Sub Falta_inicioFinIncoherente()
+        TextBox1.Text = "Corrige datos: La duración establecida tiene un valor inferior al inicio."
+        TextBox1.Visible = True
+    End Sub
+
+    Private Sub Falta_archivosalidacoherente()
+        TextBox1.Text = "Corrige datos: El archivo de salida no tiene un formato válido."
+        TextBox1.Visible = True
+    End Sub
+
+    Private Sub Falta_videoOrigen()
+        TextBox1.Text = "Corrige datos: El vídeo de origen no es correcto"
+        TextBox1.Visible = True
+    End Sub
+
+    Private Sub Falta_ffmpeg()
+        TextBox1.Text = "Corrige datos: No se encuerntra ffmpeg."
+        TextBox1.Visible = True
+    End Sub
+
+
 #End Region
 
 #Region "config"
@@ -279,7 +287,6 @@ Public Class Form1
         TextBox1.Text = "Descargando ffmpeg.."
         TextBox1.Visible = True
         Descargarffmpeg()
-        TextBox1.Text = "ffmpeg descargado"
         Await EsperaTresSegundosYEscondeConsola()
     End Sub
 
