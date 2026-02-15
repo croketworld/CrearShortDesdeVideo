@@ -438,6 +438,7 @@ Partial Class Form1
         Controls.Add(GroupBox1)
         Font = New Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         ForeColor = SystemColors.Info
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Margin = New Padding(4, 5, 4, 5)
         MaximizeBox = False
         MaximumSize = New Size(1200, 970)
