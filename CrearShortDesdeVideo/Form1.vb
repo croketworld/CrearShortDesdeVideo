@@ -5,6 +5,7 @@ Imports System.Net
 Imports System.Net.Http
 Imports System.Runtime.InteropServices
 Imports System.Security
+Imports System.Xml
 
 Public Class Form1
 
@@ -15,24 +16,25 @@ Public Class Form1
 #Region "la chicha"
 
     Private Async Sub HacerBackground(sender As Object, e As System.ComponentModel.DoWorkEventArgs)
-        Dim comandoTxt As String = CType(e.Argument, String)
+        Dim comandoTxt As String = CType("/C " & e.Argument, String)
         Dim fallido As Boolean = True
         Dim exe As Exception = Nothing
-        Dim ps As New ProcessStartInfo("cmd", comandoTxt) With {
+        Dim ps As New ProcessStartInfo("C:\Windows\System32\cmd.exe", comandoTxt) With {
             .WindowStyle = ProcessWindowStyle.Hidden,
             .UseShellExecute = False,
             .CreateNoWindow = False,
-            .WorkingDirectory = My.Application.Info.DirectoryPath,
             .RedirectStandardOutput = True,
             .RedirectStandardError = True
         }
         Dim bgw As BackgroundWorker = CType(sender, BackgroundWorker)
         bgw.ReportProgress(10, $"Iniciando proceso con comando {Environment.NewLine}{comandoTxt}{Environment.NewLine}")
+        Dim p As Process = Nothing
         Try
-            Dim p = Process.Start(ps)
+            p = Process.Start(ps)
             Dim output As String = String.Empty
             Dim fallico As String = String.Empty
-            While (bg.CancellationPending = False)
+            While (bg.CancellationPending = False And p.HasExited = False)
+                p.WaitForExit()
                 If bg.CancellationPending = True Or e.Cancel Then
                     bg.CancelAsync()
                     e.Result = New ResultadoTarea()
@@ -40,7 +42,7 @@ Public Class Form1
                 End If
                 output = Await p.StandardOutput.ReadToEndAsync()
                 fallico = p.StandardError.ReadToEnd()
-                If fallico IsNot Nothing Then
+                If String.IsNullOrEmpty(fallico) = False Then
                     Throw New ApplicationException("Error ejecutando tarea", New ApplicationException(fallico))
                 End If
                 If String.IsNullOrEmpty(output) = False Then Exit While
@@ -49,9 +51,15 @@ Public Class Form1
                 bgw.ReportProgress(90, $"Output de ffmpeg:{Environment.NewLine}{output}{Environment.NewLine}")
             End If
             fallido = False
+
         Catch ex As Exception
             exe = ex
         End Try
+        If p IsNot Nothing Then
+            If p.HasExited = False Then p.WaitForExit()
+            p.Kill(True)
+            p.Dispose()
+        End If
         If fallido Or exe IsNot Nothing Then
             Dim mensaje As String = "Error al ejecutar el comando ffpmeg."
             If exe IsNot Nothing Then
@@ -66,7 +74,7 @@ Public Class Form1
         Else
             e.Result = New ResultadoTarea(True)
         End If
-
+        e.Result = New ResultadoTarea
     End Sub
 
     Private Sub HacerBackground_progreso(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs)
@@ -78,16 +86,19 @@ Public Class Form1
         Button1.Text = "Crear video corto"
         Button1.BackColor = SystemColors.ActiveCaption
         realizando = False
-        Dim partes As ResultadoTarea = CType(e.Result, ResultadoTarea)
-        If partes Is Nothing Then partes = New ResultadoTarea
-        If e.Cancelled Then
-            partes.Mensaje = $"{Environment.NewLine}cancelado por el usuario{Environment.NewLine}"
+        If e.Result IsNot Nothing Then
+            Dim partes As ResultadoTarea = CType(e.Result, ResultadoTarea)
+            If partes Is Nothing Then partes = New ResultadoTarea
+            If e.Cancelled Then
+                partes.Mensaje = $"{Environment.NewLine}cancelado por el usuario{Environment.NewLine}"
+            End If
+            TextBox1.Text += partes.Mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
+            TextBox1.Text += "Resultado de la operación correcta? " & partes.OK
+            If partes.OK Then
+                Finalizado()
+            End If
         End If
-        TextBox1.Text += partes.Mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
-        TextBox1.Text += "Resultado de la operación correcta? " & partes.OK
-        If partes.OK Then
-            Finalizado()
-        End If
+
 
     End Sub
 
@@ -520,7 +531,6 @@ Public Class Form1
     Public Sub New()
         InitializeComponent()
 
-        AddHandler Button1.Click, AddressOf Hacer
         DateTimePicker1.MinDate = MinDate()
         DateTimePicker2.MinDate = MinDate()
 
