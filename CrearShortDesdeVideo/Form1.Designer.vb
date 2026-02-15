@@ -142,7 +142,7 @@ Partial Class Form1
         ' 
         Button1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Button1.BackColor = SystemColors.ActiveCaption
-        Button1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button1.Font = New Font("Segoe UI", 10.875F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button1.Location = New Point(772, 568)
         Button1.Margin = New Padding(4, 5, 4, 5)
         Button1.Name = "Button1"

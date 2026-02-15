@@ -17,7 +17,7 @@ Public Class Form1
 #Region "la chicha"
 
     Private Async Sub HacerBackground(sender As Object, e As System.ComponentModel.DoWorkEventArgs)
-        Dim comandoTxt As String = CType("/C " & e.Argument, String)
+        Dim comandoTxt As String = CType(e.Argument, String)
         Dim fallido As Boolean = True
         Dim exe As Exception = Nothing
         Dim ps As New ProcessStartInfo("C:\Windows\System32\cmd.exe", comandoTxt) With {
