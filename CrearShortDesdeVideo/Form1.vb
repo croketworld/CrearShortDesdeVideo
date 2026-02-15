@@ -3,6 +3,7 @@ Imports System.Drawing.Drawing2D
 Imports System.IO
 Imports System.Net
 Imports System.Net.Http
+Imports System.Net.Mime.MediaTypeNames
 Imports System.Runtime.InteropServices
 Imports System.Security
 Imports System.Xml
@@ -210,7 +211,7 @@ Public Class Form1
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ObtenerDuracionTotal()
-        Exit Sub 'temporalmente deshabilitado, ésta función secundaria requiere más tiempo del que deseo dárle ahora mismo
+
         Dim dt As TimeSpan = TimeSpan.MinValue
         Try
             dt = GetVideoFileDuration.GetVideoDuration(TextBox3.Text)
@@ -219,7 +220,7 @@ Public Class Form1
         End Try
         If dt <> TimeSpan.MinValue Then
             duracionVideoOriginal = dt
-            Label6.Text = String.Format("Duraación:{0}{1}", Environment.NewLine, dt.ToString("HH:mm:ss"))
+            Label6.Text = String.Format("Duración:{0}{1}", Environment.NewLine, dt.ToString("c"))
             ToolTip1.SetToolTip(Label6, String.Format("{0} segundos", dt.TotalSeconds))
             Label6.Visible = True
         Else
@@ -524,8 +525,27 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TextBox2.Text = My.Settings.FfmpegPath
         DateTimePicker2.Value = Date.Today.Add(My.Settings.DuracionPredeterminada)
+        ResizeByMonitorScale()
+    End Sub
+
+    Private Sub ResizeByMonitorScale()
+        Dim escalado As Integer = GetEscalado()
+        Dim tamañoDeseado As Size
+        Dim tamañoNormal As New Size(898, 755)
+        If escalado = 100 Then
+            tamañoDeseado = tamañoNormal
+        Else
+            tamañoDeseado = New Size((tamañoNormal.Width / 100) * escalado, (tamañoNormal.Height / 100) * escalado)
+        End If
+        If tamañoDeseado <> Me.Size Then
+            Me.Size = tamañoDeseado
+        End If
 
     End Sub
+
+    Private Function GetEscalado() As Integer
+        Return (Me.DeviceDpi / 96)
+    End Function
 
 
     Public Sub New()
@@ -540,6 +560,10 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ComprobarTodoOkPaDarle()
+
+    End Sub
+
+    Private Sub Form1_Move(sender As Object, e As EventArgs) Handles Me.Move
 
     End Sub
 #End Region

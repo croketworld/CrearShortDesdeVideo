@@ -73,7 +73,7 @@ Partial Class Form1
         GroupBox1.Margin = New Padding(4, 5, 4, 5)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Padding = New Padding(4, 5, 4, 5)
-        GroupBox1.Size = New Size(876, 119)
+        GroupBox1.Size = New Size(872, 119)
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "Ruta al ejecutable ffmpeg"
@@ -120,7 +120,7 @@ Partial Class Form1
         TextBox2.Location = New Point(18, 46)
         TextBox2.Margin = New Padding(4, 5, 4, 5)
         TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(620, 45)
+        TextBox2.Size = New Size(620, 57)
         TextBox2.TabIndex = 3
         ToolTip1.SetToolTip(TextBox2, resources.GetString("TextBox2.ToolTip"))
         ' 
@@ -157,7 +157,7 @@ Partial Class Form1
         NumericUpDown1.Margin = New Padding(4, 5, 4, 5)
         NumericUpDown1.Maximum = New Decimal(New Integer() {Integer.MaxValue, 0, 0, 0})
         NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(135, 45)
+        NumericUpDown1.Size = New Size(135, 57)
         NumericUpDown1.TabIndex = 5
         ToolTip1.SetToolTip(NumericUpDown1, "El momento donde iniciará el nuevo vídeo.")
         ' 
@@ -173,16 +173,19 @@ Partial Class Form1
         GroupBox2.Margin = New Padding(4, 5, 4, 5)
         GroupBox2.Name = "GroupBox2"
         GroupBox2.Padding = New Padding(4, 5, 4, 5)
-        GroupBox2.Size = New Size(876, 122)
+        GroupBox2.Size = New Size(872, 122)
         GroupBox2.TabIndex = 6
         GroupBox2.TabStop = False
         GroupBox2.Text = "Ruta al archivo original"
         ' 
         ' Label6
         ' 
-        Label6.Location = New Point(720, 26)
+        Label6.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        Label6.AutoSize = True
+        Label6.BackColor = Color.Transparent
+        Label6.Location = New Point(682, 26)
         Label6.Name = "Label6"
-        Label6.Size = New Size(144, 76)
+        Label6.Size = New Size(182, 102)
         Label6.TabIndex = 7
         Label6.Text = "Duración:" & vbCrLf & "1:23:45"
         Label6.TextAlign = ContentAlignment.MiddleCenter
@@ -208,7 +211,7 @@ Partial Class Form1
         TextBox3.Location = New Point(18, 47)
         TextBox3.Margin = New Padding(4, 5, 4, 5)
         TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(620, 45)
+        TextBox3.Size = New Size(620, 57)
         TextBox3.TabIndex = 3
         ToolTip1.SetToolTip(TextBox3, "La ruta del archivo de vídeo del que se va a extraer un tramo en un nuevo archivo de vídeo")
         ' 
@@ -239,7 +242,7 @@ Partial Class Form1
         GroupBox3.Margin = New Padding(4, 5, 4, 5)
         GroupBox3.Name = "GroupBox3"
         GroupBox3.Padding = New Padding(4, 5, 4, 5)
-        GroupBox3.Size = New Size(876, 143)
+        GroupBox3.Size = New Size(872, 143)
         GroupBox3.TabIndex = 7
         GroupBox3.TabStop = False
         GroupBox3.Text = "Desde y hasta donde cortar"
@@ -251,7 +254,7 @@ Partial Class Form1
         DateTimePicker2.Location = New Point(650, 71)
         DateTimePicker2.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker2.Name = "DateTimePicker2"
-        DateTimePicker2.Size = New Size(135, 45)
+        DateTimePicker2.Size = New Size(135, 57)
         DateTimePicker2.TabIndex = 11
         ToolTip1.SetToolTip(DateTimePicker2, "El momento donde finalizará el nuevo vídeo.")
         DateTimePicker2.Value = New Date(2026, 2, 6, 0, 0, 0, 0)
@@ -263,7 +266,7 @@ Partial Class Form1
         DateTimePicker1.Location = New Point(261, 71)
         DateTimePicker1.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(135, 45)
+        DateTimePicker1.Size = New Size(135, 57)
         DateTimePicker1.TabIndex = 10
         ToolTip1.SetToolTip(DateTimePicker1, "El momento donde iniciará el nuevo vídeo.")
         DateTimePicker1.Value = New Date(2026, 2, 6, 0, 0, 0, 0)
@@ -275,7 +278,7 @@ Partial Class Form1
         Label2.Location = New Point(409, 71)
         Label2.Margin = New Padding(4, 0, 4, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(231, 38)
+        Label2.Size = New Size(311, 51)
         Label2.TabIndex = 8
         Label2.Text = "Hasta el segundo"
         ' 
@@ -287,7 +290,7 @@ Partial Class Form1
         NumericUpDown2.Margin = New Padding(4, 5, 4, 5)
         NumericUpDown2.Maximum = New Decimal(New Integer() {Integer.MaxValue, 23283, 0, 0})
         NumericUpDown2.Name = "NumericUpDown2"
-        NumericUpDown2.Size = New Size(135, 45)
+        NumericUpDown2.Size = New Size(135, 57)
         NumericUpDown2.TabIndex = 7
         ToolTip1.SetToolTip(NumericUpDown2, "El momento donde finalizará el nuevo vídeo.")
         ' 
@@ -297,7 +300,7 @@ Partial Class Form1
         CheckBox1.BackColor = Color.Transparent
         CheckBox1.Location = New Point(431, 17)
         CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(224, 42)
+        CheckBox1.Size = New Size(300, 55)
         CheckBox1.TabIndex = 6
         CheckBox1.Text = "Modo h:mm:ss"
         ToolTip1.SetToolTip(CheckBox1, "Alternar entre usar un formato de tiempo horas:minutos:segundos o usar segundos cómo número entero")
@@ -309,7 +312,7 @@ Partial Class Form1
         Label1.Location = New Point(13, 71)
         Label1.Margin = New Padding(4, 0, 4, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(240, 38)
+        Label1.Size = New Size(322, 51)
         Label1.TabIndex = 6
         Label1.Text = "Desde el segundo"
         ' 
@@ -324,7 +327,7 @@ Partial Class Form1
         GroupBox4.Margin = New Padding(4, 5, 4, 5)
         GroupBox4.Name = "GroupBox4"
         GroupBox4.Padding = New Padding(4, 5, 4, 5)
-        GroupBox4.Size = New Size(876, 129)
+        GroupBox4.Size = New Size(872, 129)
         GroupBox4.TabIndex = 8
         GroupBox4.TabStop = False
         GroupBox4.Text = "Ruta al archivo de salida"
@@ -348,7 +351,7 @@ Partial Class Form1
         TextBox5.Location = New Point(13, 48)
         TextBox5.Margin = New Padding(4, 5, 4, 5)
         TextBox5.Name = "TextBox5"
-        TextBox5.Size = New Size(620, 45)
+        TextBox5.Size = New Size(620, 57)
         TextBox5.TabIndex = 3
         ToolTip1.SetToolTip(TextBox5, "El nuevo archivo que se va a crear")
         ' 
@@ -382,7 +385,7 @@ Partial Class Form1
         Label7.Font = New Font("Segoe UI", 11F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label7.Location = New Point(0, 513)
         Label7.Name = "Label7"
-        Label7.Size = New Size(876, 36)
+        Label7.Size = New Size(872, 36)
         Label7.TabIndex = 10
         Label7.Text = "Todos los datos deben ser correctos antes de pulsar el botón"
         Label7.TextAlign = ContentAlignment.MiddleCenter
@@ -402,10 +405,10 @@ Partial Class Form1
         ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(15F, 38F)
-        AutoScaleMode = AutoScaleMode.Font
+        AutoScaleDimensions = New SizeF(192F, 192F)
+        AutoScaleMode = AutoScaleMode.Dpi
         BackColor = SystemColors.ControlDarkDark
-        ClientSize = New Size(876, 684)
+        ClientSize = New Size(872, 684)
         Controls.Add(TextBox1)
         Controls.Add(Label7)
         Controls.Add(Label3)
@@ -418,8 +421,8 @@ Partial Class Form1
         ForeColor = SystemColors.Info
         Margin = New Padding(4, 5, 4, 5)
         MaximizeBox = False
-        MaximumSize = New Size(898, 970)
-        MinimumSize = New Size(898, 740)
+        MaximumSize = New Size(1200, 970)
+        MinimumSize = New Size(898, 755)
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Crear Short desde vídeo"
