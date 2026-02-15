@@ -137,7 +137,9 @@ Public Class Form1
 
 
     Private Sub Descargarffmpeg()
+#Disable Warning SYSLIB0014 ' El tipo o el miembro están obsoletos
         Dim wc As New WebClient
+#Enable Warning SYSLIB0014 ' El tipo o el miembro están obsoletos
         AddHandler wc.DownloadFileCompleted, AddressOf Descargadoffmpeg
         wc.DownloadFileAsync(New Uri(My.Settings.Urlffmpeg), My.Settings.FfmpegPath)
 
