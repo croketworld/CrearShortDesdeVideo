@@ -73,7 +73,7 @@ Partial Class Form1
         GroupBox1.Margin = New Padding(4, 5, 4, 5)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Padding = New Padding(4, 5, 4, 5)
-        GroupBox1.Size = New Size(872, 119)
+        GroupBox1.Size = New Size(1012, 119)
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "Ruta al ejecutable ffmpeg"
@@ -84,7 +84,7 @@ Partial Class Form1
         Button5.Location = New Point(790, 46)
         Button5.Margin = New Padding(4, 5, 4, 5)
         Button5.Name = "Button5"
-        Button5.Size = New Size(53, 45)
+        Button5.Size = New Size(53, 57)
         Button5.TabIndex = 6
         Button5.Text = "??"
         ToolTip1.SetToolTip(Button5, resources.GetString("Button5.ToolTip"))
@@ -96,7 +96,7 @@ Partial Class Form1
         Button4.Location = New Point(720, 46)
         Button4.Margin = New Padding(4, 5, 4, 5)
         Button4.Name = "Button4"
-        Button4.Size = New Size(53, 45)
+        Button4.Size = New Size(53, 57)
         Button4.TabIndex = 5
         Button4.Text = "|||"
         ToolTip1.SetToolTip(Button4, "Pulsa éste botón para que la aplicación búsque automáticamente en las rutas típicas donde debería estar")
@@ -108,7 +108,7 @@ Partial Class Form1
         Button3.Location = New Point(650, 46)
         Button3.Margin = New Padding(4, 5, 4, 5)
         Button3.Name = "Button3"
-        Button3.Size = New Size(53, 45)
+        Button3.Size = New Size(53, 57)
         Button3.TabIndex = 4
         Button3.Text = "..."
         ToolTip1.SetToolTip(Button3, "Abrir diálogo para buscar ffmpeg.exe")
@@ -140,8 +140,8 @@ Partial Class Form1
         ' 
         Button1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Button1.BackColor = SystemColors.ActiveCaption
-        Button1.Font = New Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.Location = New Point(632, 568)
+        Button1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button1.Location = New Point(772, 568)
         Button1.Margin = New Padding(4, 5, 4, 5)
         Button1.Name = "Button1"
         Button1.Size = New Size(226, 97)
@@ -153,7 +153,7 @@ Partial Class Form1
         ' 
         NumericUpDown1.BackColor = SystemColors.ControlDark
         NumericUpDown1.ForeColor = SystemColors.Info
-        NumericUpDown1.Location = New Point(261, 71)
+        NumericUpDown1.Location = New Point(343, 71)
         NumericUpDown1.Margin = New Padding(4, 5, 4, 5)
         NumericUpDown1.Maximum = New Decimal(New Integer() {Integer.MaxValue, 0, 0, 0})
         NumericUpDown1.Name = "NumericUpDown1"
@@ -173,7 +173,7 @@ Partial Class Form1
         GroupBox2.Margin = New Padding(4, 5, 4, 5)
         GroupBox2.Name = "GroupBox2"
         GroupBox2.Padding = New Padding(4, 5, 4, 5)
-        GroupBox2.Size = New Size(872, 122)
+        GroupBox2.Size = New Size(1012, 122)
         GroupBox2.TabIndex = 6
         GroupBox2.TabStop = False
         GroupBox2.Text = "Ruta al archivo original"
@@ -183,7 +183,7 @@ Partial Class Form1
         Label6.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label6.AutoSize = True
         Label6.BackColor = Color.Transparent
-        Label6.Location = New Point(682, 26)
+        Label6.Location = New Point(822, 26)
         Label6.Name = "Label6"
         Label6.Size = New Size(182, 102)
         Label6.TabIndex = 7
@@ -198,7 +198,7 @@ Partial Class Form1
         Button6.Location = New Point(650, 47)
         Button6.Margin = New Padding(4, 5, 4, 5)
         Button6.Name = "Button6"
-        Button6.Size = New Size(53, 45)
+        Button6.Size = New Size(53, 57)
         Button6.TabIndex = 5
         Button6.Text = "..."
         ToolTip1.SetToolTip(Button6, "Abrir un diálogo para buscar un vídeo")
@@ -242,7 +242,7 @@ Partial Class Form1
         GroupBox3.Margin = New Padding(4, 5, 4, 5)
         GroupBox3.Name = "GroupBox3"
         GroupBox3.Padding = New Padding(4, 5, 4, 5)
-        GroupBox3.Size = New Size(872, 143)
+        GroupBox3.Size = New Size(1012, 143)
         GroupBox3.TabIndex = 7
         GroupBox3.TabStop = False
         GroupBox3.Text = "Desde y hasta donde cortar"
@@ -250,8 +250,9 @@ Partial Class Form1
         ' 
         ' DateTimePicker2
         ' 
+        DateTimePicker2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         DateTimePicker2.Format = DateTimePickerFormat.Time
-        DateTimePicker2.Location = New Point(650, 71)
+        DateTimePicker2.Location = New Point(847, 71)
         DateTimePicker2.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker2.Name = "DateTimePicker2"
         DateTimePicker2.Size = New Size(135, 57)
@@ -263,7 +264,7 @@ Partial Class Form1
         ' DateTimePicker1
         ' 
         DateTimePicker1.Format = DateTimePickerFormat.Time
-        DateTimePicker1.Location = New Point(261, 71)
+        DateTimePicker1.Location = New Point(342, 71)
         DateTimePicker1.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker1.Name = "DateTimePicker1"
         DateTimePicker1.Size = New Size(135, 57)
@@ -274,8 +275,9 @@ Partial Class Form1
         ' 
         ' Label2
         ' 
+        Label2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label2.AutoSize = True
-        Label2.Location = New Point(409, 71)
+        Label2.Location = New Point(529, 71)
         Label2.Margin = New Padding(4, 0, 4, 0)
         Label2.Name = "Label2"
         Label2.Size = New Size(311, 51)
@@ -284,9 +286,10 @@ Partial Class Form1
         ' 
         ' NumericUpDown2
         ' 
+        NumericUpDown2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         NumericUpDown2.BackColor = SystemColors.ControlDark
         NumericUpDown2.ForeColor = SystemColors.Info
-        NumericUpDown2.Location = New Point(650, 71)
+        NumericUpDown2.Location = New Point(847, 69)
         NumericUpDown2.Margin = New Padding(4, 5, 4, 5)
         NumericUpDown2.Maximum = New Decimal(New Integer() {Integer.MaxValue, 23283, 0, 0})
         NumericUpDown2.Name = "NumericUpDown2"
@@ -296,9 +299,10 @@ Partial Class Form1
         ' 
         ' CheckBox1
         ' 
+        CheckBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         CheckBox1.AutoSize = True
         CheckBox1.BackColor = Color.Transparent
-        CheckBox1.Location = New Point(431, 17)
+        CheckBox1.Location = New Point(636, 13)
         CheckBox1.Name = "CheckBox1"
         CheckBox1.Size = New Size(300, 55)
         CheckBox1.TabIndex = 6
@@ -327,7 +331,7 @@ Partial Class Form1
         GroupBox4.Margin = New Padding(4, 5, 4, 5)
         GroupBox4.Name = "GroupBox4"
         GroupBox4.Padding = New Padding(4, 5, 4, 5)
-        GroupBox4.Size = New Size(872, 129)
+        GroupBox4.Size = New Size(1012, 129)
         GroupBox4.TabIndex = 8
         GroupBox4.TabStop = False
         GroupBox4.Text = "Ruta al archivo de salida"
@@ -338,7 +342,7 @@ Partial Class Form1
         Button2.Location = New Point(650, 48)
         Button2.Margin = New Padding(4, 5, 4, 5)
         Button2.Name = "Button2"
-        Button2.Size = New Size(53, 45)
+        Button2.Size = New Size(53, 57)
         Button2.TabIndex = 5
         Button2.Text = "..."
         ToolTip1.SetToolTip(Button2, resources.GetString("Button2.ToolTip"))
@@ -373,7 +377,7 @@ Partial Class Form1
         Label3.Location = New Point(10, 712)
         Label3.Margin = New Padding(4, 0, 4, 0)
         Label3.Name = "Label3"
-        Label3.Size = New Size(848, 193)
+        Label3.Size = New Size(988, 193)
         Label3.TabIndex = 9
         Label3.Text = " +-+-+-+-+-+-+-+-+-+-+-+" & vbCrLf & " |C|r|o|k|e|t|W|o|r|l|d|" & vbCrLf & " +-+-+-+-+-+-+-+-+-+-+-+"
         Label3.TextAlign = ContentAlignment.MiddleCenter
@@ -385,7 +389,7 @@ Partial Class Form1
         Label7.Font = New Font("Segoe UI", 11F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label7.Location = New Point(0, 513)
         Label7.Name = "Label7"
-        Label7.Size = New Size(872, 36)
+        Label7.Size = New Size(1012, 36)
         Label7.TabIndex = 10
         Label7.Text = "Todos los datos deben ser correctos antes de pulsar el botón"
         Label7.TextAlign = ContentAlignment.MiddleCenter
@@ -408,7 +412,7 @@ Partial Class Form1
         AutoScaleDimensions = New SizeF(192F, 192F)
         AutoScaleMode = AutoScaleMode.Dpi
         BackColor = SystemColors.ControlDarkDark
-        ClientSize = New Size(872, 684)
+        ClientSize = New Size(1012, 684)
         Controls.Add(TextBox1)
         Controls.Add(Label7)
         Controls.Add(Label3)
@@ -422,7 +426,7 @@ Partial Class Form1
         Margin = New Padding(4, 5, 4, 5)
         MaximizeBox = False
         MaximumSize = New Size(1200, 970)
-        MinimumSize = New Size(898, 755)
+        MinimumSize = New Size(1038, 755)
         Name = "Form1"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Crear Short desde vídeo"

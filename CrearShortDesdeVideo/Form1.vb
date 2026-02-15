@@ -223,6 +223,12 @@ Public Class Form1
             Label6.Text = String.Format("Duración:{0}{1}", Environment.NewLine, dt.ToString("c"))
             ToolTip1.SetToolTip(Label6, String.Format("{0} segundos", dt.TotalSeconds))
             Label6.Visible = True
+            Dim segundos As Integer = dt.TotalSeconds
+            If NumericUpDown2.Value > segundos Then
+                DateTimePicker2.Value = MinDate().Add(dt)
+                NumericUpDown2.Value = dt.TotalSeconds
+            End If
+
         Else
             Label6.Visible = False
         End If
@@ -529,10 +535,11 @@ Public Class Form1
     End Sub
 
     Private Sub ResizeByMonitorScale()
+        'Exit Sub
         Dim escalado As Integer = GetEscalado()
         Dim tamañoDeseado As Size
-        Dim tamañoNormal As New Size(898, 755)
-        If escalado = 100 Then
+        Dim tamañoNormal As New Size(1038, 755)
+        If escalado = 200 Then
             tamañoDeseado = tamañoNormal
         Else
             tamañoDeseado = New Size((tamañoNormal.Width / 100) * escalado, (tamañoNormal.Height / 100) * escalado)
@@ -544,7 +551,7 @@ Public Class Form1
     End Sub
 
     Private Function GetEscalado() As Integer
-        Return (Me.DeviceDpi / 96)
+        Return (Me.DeviceDpi / 96) * 100
     End Function
 
 
@@ -564,7 +571,7 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Move(sender As Object, e As EventArgs) Handles Me.Move
-
+        ResizeByMonitorScale()
     End Sub
 #End Region
 
