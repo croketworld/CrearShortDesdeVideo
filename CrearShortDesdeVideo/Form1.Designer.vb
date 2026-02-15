@@ -52,12 +52,14 @@ Partial Class Form1
         Label3 = New Label()
         Label7 = New Label()
         TextBox1 = New TextBox()
+        PictureBox1 = New PictureBox()
         GroupBox1.SuspendLayout()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox2.SuspendLayout()
         GroupBox3.SuspendLayout()
         CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox4.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' GroupBox1
@@ -157,7 +159,7 @@ Partial Class Form1
         NumericUpDown1.Margin = New Padding(4, 5, 4, 5)
         NumericUpDown1.Maximum = New Decimal(New Integer() {Integer.MaxValue, 0, 0, 0})
         NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(135, 57)
+        NumericUpDown1.Size = New Size(176, 57)
         NumericUpDown1.TabIndex = 5
         ToolTip1.SetToolTip(NumericUpDown1, "El momento donde iniciará el nuevo vídeo.")
         ' 
@@ -183,7 +185,7 @@ Partial Class Form1
         Label6.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label6.AutoSize = True
         Label6.BackColor = Color.Transparent
-        Label6.Location = New Point(822, 26)
+        Label6.Location = New Point(816, 20)
         Label6.Name = "Label6"
         Label6.Size = New Size(182, 102)
         Label6.TabIndex = 7
@@ -252,10 +254,10 @@ Partial Class Form1
         ' 
         DateTimePicker2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         DateTimePicker2.Format = DateTimePickerFormat.Time
-        DateTimePicker2.Location = New Point(847, 71)
+        DateTimePicker2.Location = New Point(824, 69)
         DateTimePicker2.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker2.Name = "DateTimePicker2"
-        DateTimePicker2.Size = New Size(135, 57)
+        DateTimePicker2.Size = New Size(176, 57)
         DateTimePicker2.TabIndex = 11
         ToolTip1.SetToolTip(DateTimePicker2, "El momento donde finalizará el nuevo vídeo.")
         DateTimePicker2.Value = New Date(2026, 2, 6, 0, 0, 0, 0)
@@ -264,10 +266,10 @@ Partial Class Form1
         ' DateTimePicker1
         ' 
         DateTimePicker1.Format = DateTimePickerFormat.Time
-        DateTimePicker1.Location = New Point(342, 71)
+        DateTimePicker1.Location = New Point(339, 71)
         DateTimePicker1.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(135, 57)
+        DateTimePicker1.Size = New Size(176, 57)
         DateTimePicker1.TabIndex = 10
         ToolTip1.SetToolTip(DateTimePicker1, "El momento donde iniciará el nuevo vídeo.")
         DateTimePicker1.Value = New Date(2026, 2, 6, 0, 0, 0, 0)
@@ -277,7 +279,7 @@ Partial Class Form1
         ' 
         Label2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label2.AutoSize = True
-        Label2.Location = New Point(529, 71)
+        Label2.Location = New Point(513, 71)
         Label2.Margin = New Padding(4, 0, 4, 0)
         Label2.Name = "Label2"
         Label2.Size = New Size(311, 51)
@@ -407,12 +409,25 @@ Partial Class Form1
         TextBox1.TabIndex = 11
         TextBox1.Visible = False
         ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.BackColor = Color.Transparent
+        PictureBox1.Image = My.Resources.Resources.logo
+        PictureBox1.InitialImage = My.Resources.Resources.logo
+        PictureBox1.Location = New Point(53, 750)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(100, 100)
+        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox1.TabIndex = 12
+        PictureBox1.TabStop = False
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(192F, 192F)
         AutoScaleMode = AutoScaleMode.Dpi
         BackColor = SystemColors.ControlDarkDark
         ClientSize = New Size(1012, 684)
+        Controls.Add(PictureBox1)
         Controls.Add(TextBox1)
         Controls.Add(Label7)
         Controls.Add(Label3)
@@ -440,6 +455,7 @@ Partial Class Form1
         CType(NumericUpDown2, ComponentModel.ISupportInitialize).EndInit()
         GroupBox4.ResumeLayout(False)
         GroupBox4.PerformLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -472,5 +488,6 @@ Partial Class Form1
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents PictureBox1 As PictureBox
 
 End Class

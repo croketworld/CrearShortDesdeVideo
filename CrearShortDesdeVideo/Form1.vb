@@ -227,8 +227,8 @@ Public Class Form1
             Label6.Visible = True
             Dim segundos As Integer = dt.TotalSeconds
             If NumericUpDown2.Value > segundos Then
-                DateTimePicker2.Value = MinDate().Add(dt)
-                NumericUpDown2.Value = dt.TotalSeconds
+                DateTimePicker2.Value = MinDate().AddSeconds(segundos)
+                NumericUpDown2.Value = segundos
             End If
 
         Else
@@ -302,10 +302,12 @@ Public Class Form1
 
     Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
         If duracionVideoOriginal.TotalSeconds <= 0 Then Exit Sub
-        If duracionVideoOriginal > TimeSpan.MinValue And NumericUpDown2.Value >= duracionVideoOriginal.TotalSeconds Then
+        If duracionVideoOriginal > TimeSpan.MinValue And NumericUpDown2.Value > duracionVideoOriginal.TotalSeconds Then
             NumericUpDown2.BackColor = Color.MediumVioletRed
-            ToolTip1.SetToolTip(NumericUpDown2, $"No puedes establecer un tiempo superior a la duración del vídeo.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:HH:mm:ss}")
+            ToolTip1.SetToolTip(NumericUpDown2, $"No puedes establecer un tiempo superior a la duración del vídeo.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:c}")
         Else
+            NumericUpDown2.BackColor = Color.DarkSeaGreen
+
             ToolTip1.SetToolTip(NumericUpDown2, "El momento donde finalizará el nuevo vídeo.")
         End If
     End Sub
@@ -574,6 +576,16 @@ Public Class Form1
 
     Private Sub Form1_Move(sender As Object, e As EventArgs) Handles Me.Move
         ResizeByMonitorScale()
+    End Sub
+
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        If NumericUpDown1.Value >= NumericUpDown2.Value Then
+            NumericUpDown1.BackColor = Color.MediumVioletRed
+            ToolTip1.SetToolTip(NumericUpDown2, $"El inicio del vídeo no debe ser superior al final.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:c}")
+        Else
+            NumericUpDown1.BackColor = Color.DarkSeaGreen
+            ToolTip1.SetToolTip(NumericUpDown1, "El momento donde inicia el nuevo vídeo.")
+        End If
     End Sub
 #End Region
 
