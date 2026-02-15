@@ -5,6 +5,16 @@ Imports System.Text.RegularExpressions
 
 Public Class GetVideoFileDuration
 
+
+    Public Shared Function GetVideoDuration_1(filepath As String) As TimeSpan
+        Return VideoDurationHelper.GetVideoDuration(filepath)
+    End Function
+
+    Public Shared Function GetVideoDuration_2(filepath As String) As TimeSpan
+        Return VideoDurationHelper2.GetVideoDuration(filepath)
+    End Function
+
+
     Public Shared Function GetVideoDuration(filePath As String) As TimeSpan
         Dim ps As New ProcessStartInfo(My.Settings.FfmpegPath, $"-i {Chr(34)}{filePath}{Chr(34)}")
         ps.UseShellExecute = False
