@@ -4,15 +4,20 @@
 
     Public Overrides Function ToString() As String
         Return _
-            String.Format("{0}{1}{2} {3} {4} {5} {6} {7} {8}{9}{10} {11} {12}{13}{14}",
-                Chr(34), Me.RutaEjecutableFFMPEG, Chr(34),
+            String.Format("{0} {1} {2} {3} {4} ""{5}"" {6} ""{7}""",
                 Me.TiempoInicio_Prefijo, Me.TiempoInicio,
                 Me.TiempoFin_Prefijo, Me.TiempoFin,
                 Me.ArchivoOrigen_Prefijo,
-                Chr(34), Me.ArchivoOrigen, Chr(34),
+                Me.ArchivoOrigen,
                 Me.ArchivoSalida_Prefijo,
-                Chr(34), Me.ArchivoSalida_Prefijo, Chr(34)
+                Me.ArchivoSalida
             )
+
+        'ffmpeg
+        '-ss 00:00:00
+        '-to 00:02:59
+        '-i "C:\Users\<>\Videos\nombre del video.mp4"
+        '-c copy "C:\Users\<>\Videos\nombre del resultado.mp4"
     End Function
     Public Property RutaEjecutableFFMPEG As String
     Public Property TiempoInicio As TimeSpan
@@ -23,7 +28,7 @@
     Private ReadOnly Property TiempoInicio_Prefijo As String = "-ss"
     Private ReadOnly Property TiempoFin_Prefijo As String = "-to"
     Private ReadOnly Property ArchivoOrigen_Prefijo As String = "-i"
-    Private ReadOnly Property ArchivoSalida_Prefijo As String = "-c copy "
+    Private ReadOnly Property ArchivoSalida_Prefijo As String = "-c copy"
 
 
     Public Sub New(rutaFfmpeg As String,

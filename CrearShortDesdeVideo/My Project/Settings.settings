@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FfmpegPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Program Files\ffmpeg\bin</Value>
+      <Value Profile="(Default)">C:\Program Files\ffmpeg\bin\ffmpeg.exe</Value>
     </Setting>
     <Setting Name="DuracionPredeterminada" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:02:59</Value>
@@ -13,6 +13,9 @@
     </Setting>
     <Setting Name="DirectorioVideos" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Urlffmpeg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://sourceforge.net/projects/anunnakiproject/files/ffmpeg.exe/download</Value>
     </Setting>
   </Settings>
 </SettingsFile>
