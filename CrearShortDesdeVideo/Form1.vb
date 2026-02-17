@@ -20,7 +20,7 @@ Public Class Form1
         Dim comandoTxt As String = CType(e.Argument, String)
         Dim fallido As Boolean = True
         Dim exe As Exception = Nothing
-        Dim ps As New ProcessStartInfo("C:\Windows\System32\cmd.exe", comandoTxt) With {
+        Dim ps As New ProcessStartInfo(My.Settings.FfmpegPath, comandoTxt) With {
             .WindowStyle = ProcessWindowStyle.Hidden,
             .UseShellExecute = False,
             .CreateNoWindow = False,

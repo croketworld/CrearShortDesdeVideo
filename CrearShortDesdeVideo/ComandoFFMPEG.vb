@@ -4,8 +4,7 @@
 
     Public Overrides Function ToString() As String
         Return _
-            String.Format("\""{0}"" {1} {2} {3} {4} {5} ""{6}"" {7} ""{8}""",
-                Me.RutaEjecutableFFMPEG,
+            String.Format("{0} {1} {2} {3} {4} ""{5}"" {6} ""{7}""",
                 Me.TiempoInicio_Prefijo, Me.TiempoInicio,
                 Me.TiempoFin_Prefijo, Me.TiempoFin,
                 Me.ArchivoOrigen_Prefijo,
