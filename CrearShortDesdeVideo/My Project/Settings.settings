@@ -115,5 +115,38 @@
     <Setting Name="Idioma" Type="System.String" Scope="User">
       <Value Profile="(Default)">es-ES</Value>
     </Setting>
+    <Setting Name="Texto_corrigeDatos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Corrige datos</Value>
+    </Setting>
+    <Setting Name="Texto_NoSeEncuentraFfmpeg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No se encuerntra ffmpeg.</Value>
+    </Setting>
+    <Setting Name="Texto_IncorrectoVideoOrigen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El vídeo de origen no es correcto.</Value>
+    </Setting>
+    <Setting Name="Texto_InvalidoArchivoSalida" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El archivo de salida no tiene un formato válido.</Value>
+    </Setting>
+    <Setting Name="Texto_DuracionInicioInferior" Type="System.String" Scope="User">
+      <Value Profile="(Default)">La duración establecida tiene un valor inferior al inicio.</Value>
+    </Setting>
+    <Setting Name="Texto_DuracionFinalSUperiorVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">La duración establecida es superior a la duración del vídeo original.</Value>
+    </Setting>
+    <Setting Name="Texto_tooltipDuracionFinal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El momento donde finalizará el nuevo vídeo.</Value>
+    </Setting>
+    <Setting Name="Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInicio" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El momento donde inicia el nuevo vídeo.</Value>
+    </Setting>
+    <Setting Name="Texto_tooltipDuracionFInalIncorrecto" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El inicio del vídeo no debe ser superior al final.</Value>
+    </Setting>
+    <Setting Name="Texto_VideoSeleccionadoDuracion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El vídeo seleccionado tiene una duración de </Value>
+    </Setting>
+    <Setting Name="Texto_DuracionSuperiorVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No puedes establecer un tiempo superior a la duración del vídeo.</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

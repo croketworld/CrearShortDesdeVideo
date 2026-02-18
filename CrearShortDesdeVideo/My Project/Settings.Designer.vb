@@ -499,6 +499,140 @@ Namespace My
                 Me("Idioma") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Corrige datos")>  _
+        Public Property Texto_corrigeDatos() As String
+            Get
+                Return CType(Me("Texto_corrigeDatos"),String)
+            End Get
+            Set
+                Me("Texto_corrigeDatos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("No se encuerntra ffmpeg.")>  _
+        Public Property Texto_NoSeEncuentraFfmpeg() As String
+            Get
+                Return CType(Me("Texto_NoSeEncuentraFfmpeg"),String)
+            End Get
+            Set
+                Me("Texto_NoSeEncuentraFfmpeg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El vídeo de origen no es correcto.")>  _
+        Public Property Texto_IncorrectoVideoOrigen() As String
+            Get
+                Return CType(Me("Texto_IncorrectoVideoOrigen"),String)
+            End Get
+            Set
+                Me("Texto_IncorrectoVideoOrigen") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El archivo de salida no tiene un formato válido.")>  _
+        Public Property Texto_InvalidoArchivoSalida() As String
+            Get
+                Return CType(Me("Texto_InvalidoArchivoSalida"),String)
+            End Get
+            Set
+                Me("Texto_InvalidoArchivoSalida") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("La duración establecida tiene un valor inferior al inicio.")>  _
+        Public Property Texto_DuracionInicioInferior() As String
+            Get
+                Return CType(Me("Texto_DuracionInicioInferior"),String)
+            End Get
+            Set
+                Me("Texto_DuracionInicioInferior") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("La duración establecida es superior a la duración del vídeo original.")>  _
+        Public Property Texto_DuracionFinalSUperiorVideo() As String
+            Get
+                Return CType(Me("Texto_DuracionFinalSUperiorVideo"),String)
+            End Get
+            Set
+                Me("Texto_DuracionFinalSUperiorVideo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El momento donde finalizará el nuevo vídeo.")>  _
+        Public Property Texto_tooltipDuracionFinal() As String
+            Get
+                Return CType(Me("Texto_tooltipDuracionFinal"),String)
+            End Get
+            Set
+                Me("Texto_tooltipDuracionFinal") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El momento donde inicia el nuevo vídeo.")>  _
+        Public Property Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInicio() As String
+            Get
+                Return CType(Me("Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInici"& _ 
+                    "o"),String)
+            End Get
+            Set
+                Me("Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInici"& _ 
+                    "o") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El inicio del vídeo no debe ser superior al final.")>  _
+        Public Property Texto_tooltipDuracionFInalIncorrecto() As String
+            Get
+                Return CType(Me("Texto_tooltipDuracionFInalIncorrecto"),String)
+            End Get
+            Set
+                Me("Texto_tooltipDuracionFInalIncorrecto") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El vídeo seleccionado tiene una duración de ")>  _
+        Public Property Texto_VideoSeleccionadoDuracion() As String
+            Get
+                Return CType(Me("Texto_VideoSeleccionadoDuracion"),String)
+            End Get
+            Set
+                Me("Texto_VideoSeleccionadoDuracion") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("No puedes establecer un tiempo superior a la duración del vídeo.")>  _
+        Public Property Texto_DuracionSuperiorVideo() As String
+            Get
+                Return CType(Me("Texto_DuracionSuperiorVideo"),String)
+            End Get
+            Set
+                Me("Texto_DuracionSuperiorVideo") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

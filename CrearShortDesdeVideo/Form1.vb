@@ -303,47 +303,47 @@ Public Class Form1
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         If NumericUpDown1.Value >= NumericUpDown2.Value Then
             NumericUpDown1.BackColor = Color.MediumVioletRed
-            ToolTip1.SetToolTip(NumericUpDown2, $"El inicio del vídeo no debe ser superior al final.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:c}")
+            ToolTip1.SetToolTip(NumericUpDown2, $"{My.Settings.Texto_tooltipDuracionFInalIncorrecto}{Environment.NewLine}{My.Settings.Texto_VideoSeleccionadoDuracion} {duracionVideoOriginal:c}")
         Else
             NumericUpDown1.BackColor = Color.DarkSeaGreen
-            ToolTip1.SetToolTip(NumericUpDown1, "El momento donde inicia el nuevo vídeo.")
+            ToolTip1.SetToolTip(NumericUpDown1, My.Settings.Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInicio)
         End If
     End Sub
     Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
         If duracionVideoOriginal.TotalSeconds <= 0 Then Exit Sub
         If duracionVideoOriginal > TimeSpan.MinValue And NumericUpDown2.Value > duracionVideoOriginal.TotalSeconds Then
             NumericUpDown2.BackColor = Color.MediumVioletRed
-            ToolTip1.SetToolTip(NumericUpDown2, $"No puedes establecer un tiempo superior a la duración del vídeo.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:c}")
+            ToolTip1.SetToolTip(NumericUpDown2, $"{My.Settings.Texto_DuracionSuperiorVideo}{Environment.NewLine}{My.Settings.Texto_VideoSeleccionadoDuracion}{duracionVideoOriginal:c}")
         Else
             NumericUpDown2.BackColor = Color.DarkSeaGreen
 
-            ToolTip1.SetToolTip(NumericUpDown2, "El momento donde finalizará el nuevo vídeo.")
+            ToolTip1.SetToolTip(NumericUpDown2, My.Settings.Texto_tooltipDuracionFinal)
         End If
     End Sub
 
 
     Private Sub Falta_FinalSuperiorADuracion()
-        TextBox1.Text = "Corrige datos: La duración establecida es superior a la duración del vídeo original."
+        TextBox1.Text = $"{My.Settings.Texto_corrigeDatos}: {My.Settings.Texto_DuracionFinalSUperiorVideo} "
         TextBox1.Visible = True
     End Sub
 
     Private Sub Falta_inicioFinIncoherente()
-        TextBox1.Text = "Corrige datos: La duración establecida tiene un valor inferior al inicio."
+        TextBox1.Text = $"{My.Settings.Texto_corrigeDatos}: {My.Settings.Texto_DuracionInicioInferior}"
         TextBox1.Visible = True
     End Sub
 
     Private Sub Falta_archivosalidacoherente()
-        TextBox1.Text = "Corrige datos: El archivo de salida no tiene un formato válido."
+        TextBox1.Text = $"{My.Settings.Texto_corrigeDatos}: {My.Settings.Texto_InvalidoArchivoSalida}"
         TextBox1.Visible = True
     End Sub
 
     Private Sub Falta_videoOrigen()
-        TextBox1.Text = "Corrige datos: El vídeo de origen no es correcto"
+        TextBox1.Text = $"{My.Settings.Texto_corrigeDatos}: {My.Settings.Texto_IncorrectoVideoOrigen}"
         TextBox1.Visible = True
     End Sub
 
     Private Sub Falta_ffmpeg()
-        TextBox1.Text = "Corrige datos: No se encuerntra ffmpeg."
+        TextBox1.Text = $"{My.Settings.Texto_corrigeDatos}: {My.Settings.Texto_NoSeEncuentraFfmpeg}"
         TextBox1.Visible = True
     End Sub
 
