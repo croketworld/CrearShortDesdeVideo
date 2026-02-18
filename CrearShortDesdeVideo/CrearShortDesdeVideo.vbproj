@@ -10,6 +10,18 @@
     <ApplicationIcon>logo128.128.ico</ApplicationIcon>
 	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	<PackageIcon>logo.png</PackageIcon>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageProjectUrl>https://github.com/croketworld/CrearShortDesdeVideo</PackageProjectUrl>
+	<Copyright>https://github.com/croketworld/CrearShortDesdeVideo/blob/commander/LICENSE.txt</Copyright>
+	<RepositoryUrl>https://github.com/croketworld/CrearShortDesdeVideo</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<Company>CroketWorld</Company>
+	<Authors>Croket, CroketWorld</Authors>
+	<Title>CrearShortDesdeVideo</Title>
+	<Description>Una sencilla herramienta para cortar un trozo de un vídeo en un nuevo archivo, útil por ejemplo, para hacer un short de un vídeo largo, obtener partes concretas, quitar partes finales..</Description>
+	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +32,17 @@
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +84,10 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Update="Resources\logo.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 

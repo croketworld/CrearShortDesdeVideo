@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/Elementos de la solución/">
-    <File Path="notas.txt" />
+    <File Path="Hoja de ruta.md" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
   </Folder>
   <Project Path="CrearShortDesdeVideo/CrearShortDesdeVideo.vbproj" />
 </Solution>

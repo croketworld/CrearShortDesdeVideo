@@ -17,5 +17,136 @@
     <Setting Name="Urlffmpeg" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://sourceforge.net/projects/anunnakiproject/files/ffmpeg.exe/download</Value>
     </Setting>
+    <Setting Name="UrlIssues" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/croketworld/CrearShortDesdeVideo/issues</Value>
+    </Setting>
+    <Setting Name="FiltroAdjuntosReporte" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Imágenes y documentos|*.*</Value>
+    </Setting>
+    <Setting Name="FiltroAdjuntos_tituloDialogo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Adjuntar archivos</Value>
+    </Setting>
+    <Setting Name="TextoIssues" Type="System.String" Scope="User">
+      <Value Profile="(Default)">De momento, puedes reportar errores y añadir sigerencias en github</Value>
+    </Setting>
+    <Setting Name="UrlGitHub" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://github.com/croketworld/CrearShortDesdeVideo</Value>
+    </Setting>
+    <Setting Name="UrlActualizaciones" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Texto_iniciandoComando" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Iniciando proceso con comando</Value>
+    </Setting>
+    <Setting Name="Texto_ErrorEjecutandoTarea" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Error ejecutando tarea</Value>
+    </Setting>
+    <Setting Name="Texto_outputFfmpeg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Output de ffmpeg</Value>
+    </Setting>
+    <Setting Name="Texto_ErrorEjecutandoComandoFfmpeg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Error al ejecutar el comando ffpmeg.</Value>
+    </Setting>
+    <Setting Name="Texto_DetalleDelError" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Detalles del error</Value>
+    </Setting>
+    <Setting Name="Texto_ComandoEjecutadoEs" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El comando ejecutado es</Value>
+    </Setting>
+    <Setting Name="Btn_CrearVideoCorto" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Crear video corto</Value>
+    </Setting>
+    <Setting Name="Texto_canceladoPorUsuario" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cancelado por el usuario</Value>
+    </Setting>
+    <Setting Name="Texto_resultadoCorrectoONo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Resultado de la operación correcta? </Value>
+    </Setting>
+    <Setting Name="Btn_cancelar" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Cancelar</Value>
+    </Setting>
+    <Setting Name="Texto_ffmpegDescargado" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ffmpeg descargado correctamente</Value>
+    </Setting>
+    <Setting Name="Texto_IniciandoComprobaciones" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Iniciando comprobaciones previas</Value>
+    </Setting>
+    <Setting Name="Texto_validacionesOK" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Validaciones previas pasadas, iniciando proceso</Value>
+    </Setting>
+    <Setting Name="Texto_Duracion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Duración</Value>
+    </Setting>
+    <Setting Name="Texto_Segundos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">segundos</Value>
+    </Setting>
+    <Setting Name="Texto_DescargandoFffmpeg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Descargando ffmpeg..</Value>
+    </Setting>
+    <Setting Name="Texto_ffmpeg_exe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ffmpeg.exe</Value>
+    </Setting>
+    <Setting Name="Rutas_ffmpeg" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;\ffmpeg.exe&lt;/string&gt;
+  &lt;string&gt;\ffmpeg\ffmpeg.exe&lt;/string&gt;
+  &lt;string&gt;\ffmpeg\bin\ffmpeg.exe&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="Texto_EnbuscaDe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">En busca de </Value>
+    </Setting>
+    <Setting Name="Texto_dialogoSeleccionarVideoOrigenTitulo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Selecciona el vídeo del que quieres obtener un fragmento</Value>
+    </Setting>
+    <Setting Name="BuscarActualizacionesAlInicio" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ActualizarAlSalir" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PosicionFormulario" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="IniciarMinimizado" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Idioma" Type="System.String" Scope="User">
+      <Value Profile="(Default)">es-ES</Value>
+    </Setting>
+    <Setting Name="Texto_corrigeDatos" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Corrige datos</Value>
+    </Setting>
+    <Setting Name="Texto_NoSeEncuentraFfmpeg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No se encuerntra ffmpeg.</Value>
+    </Setting>
+    <Setting Name="Texto_IncorrectoVideoOrigen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El vídeo de origen no es correcto.</Value>
+    </Setting>
+    <Setting Name="Texto_InvalidoArchivoSalida" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El archivo de salida no tiene un formato válido.</Value>
+    </Setting>
+    <Setting Name="Texto_DuracionInicioInferior" Type="System.String" Scope="User">
+      <Value Profile="(Default)">La duración establecida tiene un valor inferior al inicio.</Value>
+    </Setting>
+    <Setting Name="Texto_DuracionFinalSUperiorVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">La duración establecida es superior a la duración del vídeo original.</Value>
+    </Setting>
+    <Setting Name="Texto_tooltipDuracionFinal" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El momento donde finalizará el nuevo vídeo.</Value>
+    </Setting>
+    <Setting Name="Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInicio" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El momento donde inicia el nuevo vídeo.</Value>
+    </Setting>
+    <Setting Name="Texto_tooltipDuracionFInalIncorrecto" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El inicio del vídeo no debe ser superior al final.</Value>
+    </Setting>
+    <Setting Name="Texto_VideoSeleccionadoDuracion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">El vídeo seleccionado tiene una duración de </Value>
+    </Setting>
+    <Setting Name="Texto_DuracionSuperiorVideo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">No puedes establecer un tiempo superior a la duración del vídeo.</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

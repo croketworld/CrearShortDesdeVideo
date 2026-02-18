@@ -124,6 +124,515 @@ Namespace My
                 Me("Urlffmpeg") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://github.com/croketworld/CrearShortDesdeVideo/issues")>  _
+        Public Property UrlIssues() As String
+            Get
+                Return CType(Me("UrlIssues"),String)
+            End Get
+            Set
+                Me("UrlIssues") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Imágenes y documentos|*.*")>  _
+        Public Property FiltroAdjuntosReporte() As String
+            Get
+                Return CType(Me("FiltroAdjuntosReporte"),String)
+            End Get
+            Set
+                Me("FiltroAdjuntosReporte") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Adjuntar archivos")>  _
+        Public Property FiltroAdjuntos_tituloDialogo() As String
+            Get
+                Return CType(Me("FiltroAdjuntos_tituloDialogo"),String)
+            End Get
+            Set
+                Me("FiltroAdjuntos_tituloDialogo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("De momento, puedes reportar errores y añadir sigerencias en github")>  _
+        Public Property TextoIssues() As String
+            Get
+                Return CType(Me("TextoIssues"),String)
+            End Get
+            Set
+                Me("TextoIssues") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://github.com/croketworld/CrearShortDesdeVideo")>  _
+        Public Property UrlGitHub() As String
+            Get
+                Return CType(Me("UrlGitHub"),String)
+            End Get
+            Set
+                Me("UrlGitHub") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property UrlActualizaciones() As String
+            Get
+                Return CType(Me("UrlActualizaciones"),String)
+            End Get
+            Set
+                Me("UrlActualizaciones") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Iniciando proceso con comando")>  _
+        Public Property Texto_iniciandoComando() As String
+            Get
+                Return CType(Me("Texto_iniciandoComando"),String)
+            End Get
+            Set
+                Me("Texto_iniciandoComando") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Error ejecutando tarea")>  _
+        Public Property Texto_ErrorEjecutandoTarea() As String
+            Get
+                Return CType(Me("Texto_ErrorEjecutandoTarea"),String)
+            End Get
+            Set
+                Me("Texto_ErrorEjecutandoTarea") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Output de ffmpeg")>  _
+        Public Property Texto_outputFfmpeg() As String
+            Get
+                Return CType(Me("Texto_outputFfmpeg"),String)
+            End Get
+            Set
+                Me("Texto_outputFfmpeg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Error al ejecutar el comando ffpmeg.")>  _
+        Public Property Texto_ErrorEjecutandoComandoFfmpeg() As String
+            Get
+                Return CType(Me("Texto_ErrorEjecutandoComandoFfmpeg"),String)
+            End Get
+            Set
+                Me("Texto_ErrorEjecutandoComandoFfmpeg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Detalles del error")>  _
+        Public Property Texto_DetalleDelError() As String
+            Get
+                Return CType(Me("Texto_DetalleDelError"),String)
+            End Get
+            Set
+                Me("Texto_DetalleDelError") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El comando ejecutado es")>  _
+        Public Property Texto_ComandoEjecutadoEs() As String
+            Get
+                Return CType(Me("Texto_ComandoEjecutadoEs"),String)
+            End Get
+            Set
+                Me("Texto_ComandoEjecutadoEs") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Crear video corto")>  _
+        Public Property Btn_CrearVideoCorto() As String
+            Get
+                Return CType(Me("Btn_CrearVideoCorto"),String)
+            End Get
+            Set
+                Me("Btn_CrearVideoCorto") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("cancelado por el usuario")>  _
+        Public Property Texto_canceladoPorUsuario() As String
+            Get
+                Return CType(Me("Texto_canceladoPorUsuario"),String)
+            End Get
+            Set
+                Me("Texto_canceladoPorUsuario") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Resultado de la operación correcta? ")>  _
+        Public Property Texto_resultadoCorrectoONo() As String
+            Get
+                Return CType(Me("Texto_resultadoCorrectoONo"),String)
+            End Get
+            Set
+                Me("Texto_resultadoCorrectoONo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Cancelar")>  _
+        Public Property Btn_cancelar() As String
+            Get
+                Return CType(Me("Btn_cancelar"),String)
+            End Get
+            Set
+                Me("Btn_cancelar") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ffmpeg descargado correctamente")>  _
+        Public Property Texto_ffmpegDescargado() As String
+            Get
+                Return CType(Me("Texto_ffmpegDescargado"),String)
+            End Get
+            Set
+                Me("Texto_ffmpegDescargado") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Iniciando comprobaciones previas")>  _
+        Public Property Texto_IniciandoComprobaciones() As String
+            Get
+                Return CType(Me("Texto_IniciandoComprobaciones"),String)
+            End Get
+            Set
+                Me("Texto_IniciandoComprobaciones") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Validaciones previas pasadas, iniciando proceso")>  _
+        Public Property Texto_validacionesOK() As String
+            Get
+                Return CType(Me("Texto_validacionesOK"),String)
+            End Get
+            Set
+                Me("Texto_validacionesOK") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Duración")>  _
+        Public Property Texto_Duracion() As String
+            Get
+                Return CType(Me("Texto_Duracion"),String)
+            End Get
+            Set
+                Me("Texto_Duracion") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("segundos")>  _
+        Public Property Texto_Segundos() As String
+            Get
+                Return CType(Me("Texto_Segundos"),String)
+            End Get
+            Set
+                Me("Texto_Segundos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Descargando ffmpeg..")>  _
+        Public Property Texto_DescargandoFffmpeg() As String
+            Get
+                Return CType(Me("Texto_DescargandoFffmpeg"),String)
+            End Get
+            Set
+                Me("Texto_DescargandoFffmpeg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("ffmpeg.exe")>  _
+        Public Property Texto_ffmpeg_exe() As String
+            Get
+                Return CType(Me("Texto_ffmpeg_exe"),String)
+            End Get
+            Set
+                Me("Texto_ffmpeg_exe") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("<?xml version=""1.0"" encoding=""utf-16""?>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"<ArrayOfString xmlns:xsd=""http://www.w3."& _ 
+            "org/2001/XMLSchema"" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"">"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <s"& _ 
+            "tring>\ffmpeg.exe</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>\ffmpeg\ffmpeg.exe</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  <string>\ff"& _ 
+            "mpeg\bin\ffmpeg.exe</string>"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"</ArrayOfString>")>  _
+        Public Property Rutas_ffmpeg() As Global.System.Collections.Specialized.StringCollection
+            Get
+                Return CType(Me("Rutas_ffmpeg"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+            Set
+                Me("Rutas_ffmpeg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("En busca de ")>  _
+        Public Property Texto_EnbuscaDe() As String
+            Get
+                Return CType(Me("Texto_EnbuscaDe"),String)
+            End Get
+            Set
+                Me("Texto_EnbuscaDe") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Selecciona el vídeo del que quieres obtener un fragmento")>  _
+        Public Property Texto_dialogoSeleccionarVideoOrigenTitulo() As String
+            Get
+                Return CType(Me("Texto_dialogoSeleccionarVideoOrigenTitulo"),String)
+            End Get
+            Set
+                Me("Texto_dialogoSeleccionarVideoOrigenTitulo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property BuscarActualizacionesAlInicio() As Boolean
+            Get
+                Return CType(Me("BuscarActualizacionesAlInicio"),Boolean)
+            End Get
+            Set
+                Me("BuscarActualizacionesAlInicio") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property ActualizarAlSalir() As Boolean
+            Get
+                Return CType(Me("ActualizarAlSalir"),Boolean)
+            End Get
+            Set
+                Me("ActualizarAlSalir") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property PosicionFormulario() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("PosicionFormulario"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("PosicionFormulario") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property IniciarMinimizado() As Boolean
+            Get
+                Return CType(Me("IniciarMinimizado"),Boolean)
+            End Get
+            Set
+                Me("IniciarMinimizado") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("es-ES")>  _
+        Public Property Idioma() As String
+            Get
+                Return CType(Me("Idioma"),String)
+            End Get
+            Set
+                Me("Idioma") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Corrige datos")>  _
+        Public Property Texto_corrigeDatos() As String
+            Get
+                Return CType(Me("Texto_corrigeDatos"),String)
+            End Get
+            Set
+                Me("Texto_corrigeDatos") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("No se encuerntra ffmpeg.")>  _
+        Public Property Texto_NoSeEncuentraFfmpeg() As String
+            Get
+                Return CType(Me("Texto_NoSeEncuentraFfmpeg"),String)
+            End Get
+            Set
+                Me("Texto_NoSeEncuentraFfmpeg") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El vídeo de origen no es correcto.")>  _
+        Public Property Texto_IncorrectoVideoOrigen() As String
+            Get
+                Return CType(Me("Texto_IncorrectoVideoOrigen"),String)
+            End Get
+            Set
+                Me("Texto_IncorrectoVideoOrigen") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El archivo de salida no tiene un formato válido.")>  _
+        Public Property Texto_InvalidoArchivoSalida() As String
+            Get
+                Return CType(Me("Texto_InvalidoArchivoSalida"),String)
+            End Get
+            Set
+                Me("Texto_InvalidoArchivoSalida") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("La duración establecida tiene un valor inferior al inicio.")>  _
+        Public Property Texto_DuracionInicioInferior() As String
+            Get
+                Return CType(Me("Texto_DuracionInicioInferior"),String)
+            End Get
+            Set
+                Me("Texto_DuracionInicioInferior") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("La duración establecida es superior a la duración del vídeo original.")>  _
+        Public Property Texto_DuracionFinalSUperiorVideo() As String
+            Get
+                Return CType(Me("Texto_DuracionFinalSUperiorVideo"),String)
+            End Get
+            Set
+                Me("Texto_DuracionFinalSUperiorVideo") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El momento donde finalizará el nuevo vídeo.")>  _
+        Public Property Texto_tooltipDuracionFinal() As String
+            Get
+                Return CType(Me("Texto_tooltipDuracionFinal"),String)
+            End Get
+            Set
+                Me("Texto_tooltipDuracionFinal") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El momento donde inicia el nuevo vídeo.")>  _
+        Public Property Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInicio() As String
+            Get
+                Return CType(Me("Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInici"& _ 
+                    "o"),String)
+            End Get
+            Set
+                Me("Texto_tooltipDuracionIniciioTexto_tooltipDuracionInicioTexto_tooltipDuracionInici"& _ 
+                    "o") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El inicio del vídeo no debe ser superior al final.")>  _
+        Public Property Texto_tooltipDuracionFInalIncorrecto() As String
+            Get
+                Return CType(Me("Texto_tooltipDuracionFInalIncorrecto"),String)
+            End Get
+            Set
+                Me("Texto_tooltipDuracionFInalIncorrecto") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("El vídeo seleccionado tiene una duración de ")>  _
+        Public Property Texto_VideoSeleccionadoDuracion() As String
+            Get
+                Return CType(Me("Texto_VideoSeleccionadoDuracion"),String)
+            End Get
+            Set
+                Me("Texto_VideoSeleccionadoDuracion") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("No puedes establecer un tiempo superior a la duración del vídeo.")>  _
+        Public Property Texto_DuracionSuperiorVideo() As String
+            Get
+                Return CType(Me("Texto_DuracionSuperiorVideo"),String)
+            End Get
+            Set
+                Me("Texto_DuracionSuperiorVideo") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

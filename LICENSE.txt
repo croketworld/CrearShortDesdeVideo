@@ -1,6 +1,34 @@
-MIT License
+Custom MIT|CopyLeft|Creative common licence
+Todo código y contenido digital aquí compartido, se balancea entre las licencias MIT/copyleft/creative common, 
+pero siempre sujeto a usos conscientes de la información plasmada, 
+es propiedad de la humanidad y de cualquiera que pueda y quiera asimilarlo, 
+pero no de quien pretenda malinterpretarlo o manipularlo de modo que resulte dañino para cualquier ente viviente. 
+Canalizo una información universal, 
+y es el mono el que ha de aprender a usar la escopeta antes de acarrearla, 
+pues ataviarse de conocimiento no es una transferencia, 
+sino una asimilación que cada individuo puede abrazar a su forma, 
+pues por cada persona hay una cosmovisión, 
+una manera única de profesar lo sagrado, 
+y no es transferible, por lo que, 
+en mi canalización no deviene responsabilidad alguna en cuanto a cómo se usa dicha información. 
+El conocimiento es poder, 
+lo que tú cómo individúo hagas con ese poder, es tu responsabilidad. 
+En cualquier caso, puedes contar conmigo 
+para aderezar y complementar los vacíos de conocimiento necesarios para alcanzar 
+el fructuoso resultado de un conocimiento superior, 
+ya que, igual que te señalo donde está la cima, 
+es porque estoy a tu lado para acompañarte en la ascensión 
+por el camino más adecuado que puedas transitar hasta alcanzarlo.
 
-Copyright (c) [year] [fullname]
+
+
+
+Copyright (c) - CopyLeft 🄯 - CC-BY-SA | 2026 Croketworld
+
+https://creativecommons.org/licenses/by/4.0/
+
+
+MIT License
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +47,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
