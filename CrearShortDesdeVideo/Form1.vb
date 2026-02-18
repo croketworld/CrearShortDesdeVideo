@@ -28,7 +28,7 @@ Public Class Form1
             .RedirectStandardError = True
         }
         Dim bgw As BackgroundWorker = CType(sender, BackgroundWorker)
-        bgw.ReportProgress(10, $"Iniciando proceso con comando {Environment.NewLine}{comandoTxt}{Environment.NewLine}")
+        bgw.ReportProgress(10, $"{My.Settings.Texto_iniciandoComando} {Environment.NewLine}{comandoTxt}{Environment.NewLine}")
         Dim p As Process = Nothing
         Try
             p = Process.Start(ps)
@@ -44,12 +44,12 @@ Public Class Form1
                 output = Await p.StandardOutput.ReadToEndAsync()
                 fallico = p.StandardError.ReadToEnd()
                 If String.IsNullOrEmpty(fallico) = False Then
-                    Throw New ApplicationException("Error ejecutando tarea", New ApplicationException(fallico))
+                    Throw New ApplicationException(My.Settings.Texto_ErrorEjecutandoTarea, New ApplicationException(fallico))
                 End If
                 If String.IsNullOrEmpty(output) = False Then Exit While
             End While
             If String.IsNullOrEmpty(output) = False Then
-                bgw.ReportProgress(90, $"Output de ffmpeg:{Environment.NewLine}{output}{Environment.NewLine}")
+                bgw.ReportProgress(90, $"{My.Settings.Texto_outputFfmpeg}:{Environment.NewLine}{output}{Environment.NewLine}")
             End If
             fallido = False
 
@@ -62,14 +62,14 @@ Public Class Form1
             p.Dispose()
         End If
         If fallido Or exe IsNot Nothing Then
-            Dim mensaje As String = "Error al ejecutar el comando ffpmeg."
+            Dim mensaje As String = My.Settings.Texto_ErrorEjecutandoComandoFfmpeg
             If exe IsNot Nothing Then
-                mensaje += $"{Environment.NewLine}Detalles del error:{Environment.NewLine}"
+                mensaje += $"{Environment.NewLine}{My.Settings.Texto_DetalleDelError}:{Environment.NewLine}"
                 mensaje += exe.Message
                 If exe.InnerException IsNot Nothing Then
                     mensaje += $"{Environment.NewLine}{exe.InnerException.Message}"
                 End If
-                mensaje += $"{Environment.NewLine}El comando ejecutado es: {Environment.NewLine}{comandoTxt}"
+                mensaje += $"{Environment.NewLine}{My.Settings.Texto_ComandoEjecutadoEs}: {Environment.NewLine}{comandoTxt}"
             End If
             e.Result = New ResultadoTarea(False, mensaje)
         Else
@@ -84,17 +84,17 @@ Public Class Form1
 
     End Sub
     Private Sub HacerBackground_finalizado(sender As Object, e As RunWorkerCompletedEventArgs)
-        Button1.Text = "Crear video corto"
+        Button1.Text = My.Settings.Btn_CrearVideoCorto
         Button1.BackColor = SystemColors.ActiveCaption
         realizando = False
         If e.Result IsNot Nothing Then
             Dim partes As ResultadoTarea = CType(e.Result, ResultadoTarea)
             If partes Is Nothing Then partes = New ResultadoTarea
             If e.Cancelled Then
-                partes.Mensaje = $"{Environment.NewLine}cancelado por el usuario{Environment.NewLine}"
+                partes.Mensaje = $"{Environment.NewLine}{My.Settings.Texto_canceladoPorUsuario}{Environment.NewLine}"
             End If
             TextBox1.Text += partes.Mensaje ' Clipboard.SetText(mensaje) me parece más intrusivo
-            TextBox1.Text += "Resultado de la operación correcta? " & partes.OK
+            TextBox1.Text += My.Settings.Texto_resultadoCorrectoONo & partes.OK
             If partes.OK Then
                 Finalizado()
             End If
@@ -107,7 +107,7 @@ Public Class Form1
     Public Sub Hacer()
 
         If realizando = False Then
-            Button1.Text = "Cancelar"
+            Button1.Text = My.Settings.Btn_cancelar
             Button1.BackColor = SystemColors.Highlight
             realizando = True
         Else
@@ -145,10 +145,10 @@ Public Class Form1
 
     End Sub
     Private Sub Descargadoffmpeg()
-        TextBox1.Text = "ffmpeg descargado correctamente"
+        TextBox1.Text = My.Settings.Texto_ffmpegDescargado
     End Sub
     Private Sub ComprobarTodoOkPaDarle()
-        TextBox1.Text = "Iniciando comprobaciones previas"
+        TextBox1.Text = My.Settings.Texto_iniciandoComando
         Dim ffmpegEsta As Boolean = IO.File.Exists(TextBox2.Text)
         If ffmpegEsta = False Then
             Falta_ffmpeg()
@@ -178,7 +178,7 @@ Public Class Form1
             Falta_FinalSuperiorADuracion()
             Exit Sub
         End If
-        TextBox1.Text = "Validaciones previas pasadas, iniciando proceso"
+        TextBox1.Text = My.Settings.Texto_validacionesOK
         Hacer()
 
     End Sub
@@ -222,8 +222,8 @@ Public Class Form1
         End Try
         If dt <> TimeSpan.MinValue Then
             duracionVideoOriginal = dt
-            Label6.Text = String.Format("Duración:{0}{1}", Environment.NewLine, dt.ToString("c"))
-            ToolTip1.SetToolTip(Label6, String.Format("{0} segundos", dt.TotalSeconds))
+            Label6.Text = String.Format("{0}:{1}{2}", My.Settings.Texto_Duracion, Environment.NewLine, dt.ToString("c"))
+            ToolTip1.SetToolTip(Label6, String.Format("{0} {1}", dt.TotalSeconds, My.Settings.Texto_Segundos))
             Label6.Visible = True
             Dim segundos As Integer = dt.TotalSeconds
             If NumericUpDown2.Value > segundos Then
@@ -300,6 +300,15 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
+        If NumericUpDown1.Value >= NumericUpDown2.Value Then
+            NumericUpDown1.BackColor = Color.MediumVioletRed
+            ToolTip1.SetToolTip(NumericUpDown2, $"El inicio del vídeo no debe ser superior al final.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:c}")
+        Else
+            NumericUpDown1.BackColor = Color.DarkSeaGreen
+            ToolTip1.SetToolTip(NumericUpDown1, "El momento donde inicia el nuevo vídeo.")
+        End If
+    End Sub
     Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
         If duracionVideoOriginal.TotalSeconds <= 0 Then Exit Sub
         If duracionVideoOriginal > TimeSpan.MinValue And NumericUpDown2.Value > duracionVideoOriginal.TotalSeconds Then
@@ -357,15 +366,22 @@ Public Class Form1
 
 #Region "acciones de usuario en formulario"
 
+    Private Function FfmpegRutaJuntoApp() As String
+        Return Path.Combine(My.Application.Info.DirectoryPath, My.Settings.Texto_ffmpeg_exe)
+    End Function
+
+
+
+
     ''' <summary>
     ''' Descarga ffmpeg y lo coloca junto a la app
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Async Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        My.Settings.FfmpegPath = Path.Combine(My.Application.Info.DirectoryPath, "ffmpeg.exe")
+        My.Settings.FfmpegPath = FfmpegRutaJuntoApp()
         TextBox2.Text = My.Settings.FfmpegPath
-        TextBox1.Text = "Descargando ffmpeg.."
+        TextBox1.Text = My.Settings.Texto_DescargandoFffmpeg
         TextBox1.Visible = True
         Descargarffmpeg()
         Await EsperaTresSegundosYEscondeConsola()
@@ -387,7 +403,7 @@ Public Class Form1
     ''' <param name="e"></param>
     ''' <remarks>Es cómo preguntárle a Windows "illo, mhíraten-loh borsilloh a-véh ji ëthá er ffmpeg de los cohöneh puáï"</remarks>
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Dim rutaJuntoAmi As String = Path.Combine(My.Application.Info.DirectoryPath, "ffmpeg.exe")
+        Dim rutaJuntoAmi As String = FfmpegRutaJuntoApp()
         If IO.File.Exists(rutaJuntoAmi) Then
             TextBox2.Text = rutaJuntoAmi
             Exit Sub
@@ -398,15 +414,10 @@ Public Class Form1
         Dim rutaFfmpeg As String = String.Empty 'como el corazon de mi ex
         'iniciales
         Dim directoriosBaseSistema = [Enum].GetValues(Of Environment.SpecialFolder)()
-        Dim variantes As String() = New String() {
-            "\ffmpeg.exe",
-            "\ffmpeg\ffmpeg.exe",
-            "\ffmpeg\bin\ffmpeg.exe"
-        }
         'proceso
         For Each directoriobase In directoriosBaseSistema
             Dim path As String = Environment.GetFolderPath(directoriobase)
-            For Each variante As String In variantes
+            For Each variante As String In My.Settings.Rutas_ffmpeg
                 'este código es una chapuza que nada tiene que ver con mi trabajao real ¿un bucle for dentro de otro? ¿¡es que nadie va a pensar en la complejidad ciclomática!? y en el código del evento del botón directamente, mi yo profesional me abofetearía, pero ésto es una herramienta tonta y apenas tiene repercusión para las cpus de hoy día. Pero vamos que si eres programador y crees que éste código es chapuzero, estoy al 100% contigo, es una chapuza
                 Dim ruta As String = IO.Path.Join(path, variante)
                 If IO.File.Exists(ruta) Then
@@ -431,8 +442,8 @@ Public Class Form1
         Dim ofd As New OpenFileDialog
         With ofd
             .InitialDirectory = My.Application.Info.DirectoryPath
-            .Filter = "ffmpeg|ffmpeg.exe"
-            .Title = "En busca de ffmpeg.exe"
+            .Filter = $"{My.Settings.Texto_ffmpeg_exe.Split(".")(0)}|{My.Settings.Texto_ffmpeg_exe}"
+            .Title = $"{My.Settings.Texto_EnbuscaDe}{My.Settings.Texto_ffmpeg_exe}"
             .CheckFileExists = True
             Dim dlgsres As DialogResult = .ShowDialog()
             If dlgsres = DialogResult.OK Then
@@ -462,30 +473,19 @@ Public Class Form1
         End With
     End Sub
 
+    Private Function SeleccionarArchivoOrigen() As String
+        Return My.Application.SeleccionarArchivoOrigen()
+    End Function
+
     ''' <summary>
     ''' Abre un diálogo para seleccionar el archivo que se va a cortar
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Dim ofd As New OpenFileDialog
-        Dim filtrovideo As String = My.Settings.FiltroVideo '"Vídeos|*.mp4;*.avi;*.mkv;*.mov;*.wmv;*.flv;*.webm;*.mpeg;*.mpg;*.m4v;*.3gp;*.ts;*.m2ts;*.vob;*.divx;*.ogv;*.asf;*.rm;*.rmvb;*.dat;*.nsv;*.f4v;*.mxf;*.mts;*.m2v;*.svi;*.tp;*.m2t;*.iso;*.m2p;*.mpv2;*.vob;*.vro;*.nsv;*.nuv;*.gxf;*.ps;*.rec;*.tts;*.m2ts;*.m2t;*.m2p;*.m2v;*.m2p;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t;*.m2ts;*.m2v;*.m2t"
-        Dim directorioVideos As String = My.Settings.DirectorioVideos
-        If IO.Directory.Exists(directorioVideos) = False Then directorioVideos = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos)
-        With ofd
-            .RestoreDirectory = True
-            .CheckFileExists = True
-            .Filter = filtrovideo
-            .InitialDirectory = directorioVideos
-            .Title = "Selecciona el vídeo del que quieres obtener un fragmento"
-        End With
-        Dim dlgres As DialogResult = ofd.ShowDialog
-        If dlgres = DialogResult.OK Then
-            TextBox3.Text = ofd.FileName
-            My.Settings.DirectorioVideos = New IO.FileInfo(ofd.FileName).DirectoryName
-            ObtenerDuracionTotal()
-        End If
-
+        Dim fileorigen As String = SeleccionarArchivoOrigen()
+        TextBox3.Text = fileorigen
+        ObtenerDuracionTotal()
 
     End Sub
 
@@ -510,7 +510,7 @@ Public Class Form1
 
 #End Region
 
-#Region "datps paquí y pallá"
+#Region "datos paquí y pallá"
 
     Private Sub DateTimePicker2_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker2.ValueChanged
         Dim ts As Integer = 0
@@ -578,18 +578,43 @@ Public Class Form1
         ResizeByMonitorScale()
     End Sub
 
-    Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
-        If NumericUpDown1.Value >= NumericUpDown2.Value Then
-            NumericUpDown1.BackColor = Color.MediumVioletRed
-            ToolTip1.SetToolTip(NumericUpDown2, $"El inicio del vídeo no debe ser superior al final.{Environment.NewLine} El vídeo seleccionado tiene una duración de {duracionVideoOriginal:c}")
-        Else
-            NumericUpDown1.BackColor = Color.DarkSeaGreen
-            ToolTip1.SetToolTip(NumericUpDown1, "El momento donde inicia el nuevo vídeo.")
-        End If
-    End Sub
 #End Region
 
+#Region "menu app"
 
+    Private Sub AddMenuHandlemoor()
+        AddHandler MinimizarToolStripMenuItem.Click, AddressOf Minimizar
+        AddHandler ConfiguraciónToolStripMenuItem.Click, AddressOf Configuracion
+        AddHandler DocumentaciónToolStripMenuItem.Click, AddressOf Documentacion
+        AddHandler ReportarErrorToolStripMenuItem.Click, AddressOf ReportarError
+        AddHandler ActualizarToolStripMenuItem.Click, AddressOf Actualizar
+        AddHandler SalirToolStripMenuItem.Click, AddressOf Salir
+
+    End Sub
+
+    Public Sub Minimizar()
+        My.Application.Minimizar()
+    End Sub
+    Public Sub Configuracion()
+        My.Application.Configuracion()
+    End Sub
+
+    Public Sub Documentacion()
+        My.Application.Documentacion()
+    End Sub
+    Public Sub ReportarError()
+        My.Application.ReportarError()
+    End Sub
+
+    Public Sub Actualizar()
+        My.Application.Actualizar()
+    End Sub
+
+    Public Sub Salir()
+        My.Application.Salir()
+    End Sub
+
+#End Region
     'ffmpeg
     '-ss 00:00:00
     '-to 00:02:59

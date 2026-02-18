@@ -53,6 +53,17 @@ Partial Class Form1
         Label7 = New Label()
         TextBox1 = New TextBox()
         PictureBox1 = New PictureBox()
+        MenuStrip1 = New MenuStrip()
+        AplicaciónToolStripMenuItem = New ToolStripMenuItem()
+        MinimizarToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripSeparator1 = New ToolStripSeparator()
+        SoporteToolStripMenuItem = New ToolStripMenuItem()
+        DocumentaciónToolStripMenuItem = New ToolStripMenuItem()
+        ReportarErrorToolStripMenuItem = New ToolStripMenuItem()
+        ActualizarToolStripMenuItem = New ToolStripMenuItem()
+        ToolStripSeparator2 = New ToolStripSeparator()
+        SalirToolStripMenuItem = New ToolStripMenuItem()
+        ConfiguraciónToolStripMenuItem = New ToolStripMenuItem()
         GroupBox1.SuspendLayout()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox2.SuspendLayout()
@@ -60,6 +71,7 @@ Partial Class Form1
         CType(NumericUpDown2, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox4.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' GroupBox1
@@ -71,11 +83,11 @@ Partial Class Form1
         GroupBox1.Controls.Add(Label5)
         GroupBox1.Dock = DockStyle.Top
         GroupBox1.ForeColor = SystemColors.Info
-        GroupBox1.Location = New Point(0, 0)
+        GroupBox1.Location = New Point(0, 24)
         GroupBox1.Margin = New Padding(4, 5, 4, 5)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Padding = New Padding(4, 5, 4, 5)
-        GroupBox1.Size = New Size(1012, 119)
+        GroupBox1.Size = New Size(1022, 119)
         GroupBox1.TabIndex = 0
         GroupBox1.TabStop = False
         GroupBox1.Text = "Ruta al ejecutable ffmpeg"
@@ -122,7 +134,7 @@ Partial Class Form1
         TextBox2.Location = New Point(18, 46)
         TextBox2.Margin = New Padding(4, 5, 4, 5)
         TextBox2.Name = "TextBox2"
-        TextBox2.Size = New Size(620, 57)
+        TextBox2.Size = New Size(620, 32)
         TextBox2.TabIndex = 3
         ToolTip1.SetToolTip(TextBox2, resources.GetString("TextBox2.ToolTip"))
         ' 
@@ -159,7 +171,7 @@ Partial Class Form1
         NumericUpDown1.Margin = New Padding(4, 5, 4, 5)
         NumericUpDown1.Maximum = New Decimal(New Integer() {Integer.MaxValue, 0, 0, 0})
         NumericUpDown1.Name = "NumericUpDown1"
-        NumericUpDown1.Size = New Size(176, 57)
+        NumericUpDown1.Size = New Size(176, 32)
         NumericUpDown1.TabIndex = 5
         ToolTip1.SetToolTip(NumericUpDown1, "El momento donde iniciará el nuevo vídeo.")
         ' 
@@ -171,11 +183,11 @@ Partial Class Form1
         GroupBox2.Controls.Add(Label4)
         GroupBox2.Dock = DockStyle.Top
         GroupBox2.ForeColor = SystemColors.Info
-        GroupBox2.Location = New Point(0, 119)
+        GroupBox2.Location = New Point(0, 143)
         GroupBox2.Margin = New Padding(4, 5, 4, 5)
         GroupBox2.Name = "GroupBox2"
         GroupBox2.Padding = New Padding(4, 5, 4, 5)
-        GroupBox2.Size = New Size(1012, 122)
+        GroupBox2.Size = New Size(1022, 122)
         GroupBox2.TabIndex = 6
         GroupBox2.TabStop = False
         GroupBox2.Text = "Ruta al archivo original"
@@ -185,9 +197,9 @@ Partial Class Form1
         Label6.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label6.AutoSize = True
         Label6.BackColor = Color.Transparent
-        Label6.Location = New Point(816, 20)
+        Label6.Location = New Point(826, 20)
         Label6.Name = "Label6"
-        Label6.Size = New Size(182, 102)
+        Label6.Size = New Size(93, 50)
         Label6.TabIndex = 7
         Label6.Text = "Duración:" & vbCrLf & "1:23:45"
         Label6.TextAlign = ContentAlignment.MiddleCenter
@@ -213,7 +225,7 @@ Partial Class Form1
         TextBox3.Location = New Point(18, 47)
         TextBox3.Margin = New Padding(4, 5, 4, 5)
         TextBox3.Name = "TextBox3"
-        TextBox3.Size = New Size(620, 57)
+        TextBox3.Size = New Size(620, 32)
         TextBox3.TabIndex = 3
         ToolTip1.SetToolTip(TextBox3, "La ruta del archivo de vídeo del que se va a extraer un tramo en un nuevo archivo de vídeo")
         ' 
@@ -240,11 +252,11 @@ Partial Class Form1
         GroupBox3.Controls.Add(NumericUpDown1)
         GroupBox3.Dock = DockStyle.Top
         GroupBox3.ForeColor = SystemColors.Info
-        GroupBox3.Location = New Point(0, 241)
+        GroupBox3.Location = New Point(0, 265)
         GroupBox3.Margin = New Padding(4, 5, 4, 5)
         GroupBox3.Name = "GroupBox3"
         GroupBox3.Padding = New Padding(4, 5, 4, 5)
-        GroupBox3.Size = New Size(1012, 143)
+        GroupBox3.Size = New Size(1022, 143)
         GroupBox3.TabIndex = 7
         GroupBox3.TabStop = False
         GroupBox3.Text = "Desde y hasta donde cortar"
@@ -254,10 +266,10 @@ Partial Class Form1
         ' 
         DateTimePicker2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         DateTimePicker2.Format = DateTimePickerFormat.Time
-        DateTimePicker2.Location = New Point(824, 69)
+        DateTimePicker2.Location = New Point(834, 69)
         DateTimePicker2.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker2.Name = "DateTimePicker2"
-        DateTimePicker2.Size = New Size(176, 57)
+        DateTimePicker2.Size = New Size(176, 32)
         DateTimePicker2.TabIndex = 11
         ToolTip1.SetToolTip(DateTimePicker2, "El momento donde finalizará el nuevo vídeo.")
         DateTimePicker2.Value = New Date(2026, 2, 6, 0, 0, 0, 0)
@@ -269,7 +281,7 @@ Partial Class Form1
         DateTimePicker1.Location = New Point(339, 71)
         DateTimePicker1.MinDate = New Date(2026, 2, 6, 0, 0, 0, 0)
         DateTimePicker1.Name = "DateTimePicker1"
-        DateTimePicker1.Size = New Size(176, 57)
+        DateTimePicker1.Size = New Size(176, 32)
         DateTimePicker1.TabIndex = 10
         ToolTip1.SetToolTip(DateTimePicker1, "El momento donde iniciará el nuevo vídeo.")
         DateTimePicker1.Value = New Date(2026, 2, 6, 0, 0, 0, 0)
@@ -279,10 +291,10 @@ Partial Class Form1
         ' 
         Label2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         Label2.AutoSize = True
-        Label2.Location = New Point(513, 71)
+        Label2.Location = New Point(523, 71)
         Label2.Margin = New Padding(4, 0, 4, 0)
         Label2.Name = "Label2"
-        Label2.Size = New Size(311, 51)
+        Label2.Size = New Size(157, 25)
         Label2.TabIndex = 8
         Label2.Text = "Hasta el segundo"
         ' 
@@ -291,11 +303,11 @@ Partial Class Form1
         NumericUpDown2.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         NumericUpDown2.BackColor = SystemColors.ControlDark
         NumericUpDown2.ForeColor = SystemColors.Info
-        NumericUpDown2.Location = New Point(847, 69)
+        NumericUpDown2.Location = New Point(857, 69)
         NumericUpDown2.Margin = New Padding(4, 5, 4, 5)
         NumericUpDown2.Maximum = New Decimal(New Integer() {Integer.MaxValue, 23283, 0, 0})
         NumericUpDown2.Name = "NumericUpDown2"
-        NumericUpDown2.Size = New Size(135, 57)
+        NumericUpDown2.Size = New Size(135, 32)
         NumericUpDown2.TabIndex = 7
         ToolTip1.SetToolTip(NumericUpDown2, "El momento donde finalizará el nuevo vídeo.")
         ' 
@@ -304,9 +316,9 @@ Partial Class Form1
         CheckBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         CheckBox1.AutoSize = True
         CheckBox1.BackColor = Color.Transparent
-        CheckBox1.Location = New Point(636, 13)
+        CheckBox1.Location = New Point(793, 13)
         CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(300, 55)
+        CheckBox1.Size = New Size(153, 29)
         CheckBox1.TabIndex = 6
         CheckBox1.Text = "Modo h:mm:ss"
         ToolTip1.SetToolTip(CheckBox1, "Alternar entre usar un formato de tiempo horas:minutos:segundos o usar segundos cómo número entero")
@@ -318,7 +330,7 @@ Partial Class Form1
         Label1.Location = New Point(13, 71)
         Label1.Margin = New Padding(4, 0, 4, 0)
         Label1.Name = "Label1"
-        Label1.Size = New Size(322, 51)
+        Label1.Size = New Size(162, 25)
         Label1.TabIndex = 6
         Label1.Text = "Desde el segundo"
         ' 
@@ -329,11 +341,11 @@ Partial Class Form1
         GroupBox4.Controls.Add(Label8)
         GroupBox4.Dock = DockStyle.Top
         GroupBox4.ForeColor = SystemColors.Info
-        GroupBox4.Location = New Point(0, 384)
+        GroupBox4.Location = New Point(0, 408)
         GroupBox4.Margin = New Padding(4, 5, 4, 5)
         GroupBox4.Name = "GroupBox4"
         GroupBox4.Padding = New Padding(4, 5, 4, 5)
-        GroupBox4.Size = New Size(1012, 129)
+        GroupBox4.Size = New Size(1022, 129)
         GroupBox4.TabIndex = 8
         GroupBox4.TabStop = False
         GroupBox4.Text = "Ruta al archivo de salida"
@@ -357,7 +369,7 @@ Partial Class Form1
         TextBox5.Location = New Point(13, 48)
         TextBox5.Margin = New Padding(4, 5, 4, 5)
         TextBox5.Name = "TextBox5"
-        TextBox5.Size = New Size(620, 57)
+        TextBox5.Size = New Size(620, 32)
         TextBox5.TabIndex = 3
         ToolTip1.SetToolTip(TextBox5, "El nuevo archivo que se va a crear")
         ' 
@@ -389,9 +401,9 @@ Partial Class Form1
         Label7.BackColor = Color.Transparent
         Label7.Dock = DockStyle.Top
         Label7.Font = New Font("Segoe UI", 11F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(0, 513)
+        Label7.Location = New Point(0, 537)
         Label7.Name = "Label7"
-        Label7.Size = New Size(1012, 36)
+        Label7.Size = New Size(1022, 36)
         Label7.TabIndex = 10
         Label7.Text = "Todos los datos deben ser correctos antes de pulsar el botón"
         Label7.TextAlign = ContentAlignment.MiddleCenter
@@ -421,12 +433,91 @@ Partial Class Form1
         PictureBox1.TabIndex = 12
         PictureBox1.TabStop = False
         ' 
+        ' MenuStrip1
+        ' 
+        MenuStrip1.BackColor = SystemColors.Info
+        MenuStrip1.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        MenuStrip1.Items.AddRange(New ToolStripItem() {AplicaciónToolStripMenuItem})
+        MenuStrip1.Location = New Point(0, 0)
+        MenuStrip1.Name = "MenuStrip1"
+        MenuStrip1.Size = New Size(1022, 24)
+        MenuStrip1.TabIndex = 13
+        MenuStrip1.Text = "MenuStrip1"
+        ' 
+        ' AplicaciónToolStripMenuItem
+        ' 
+        AplicaciónToolStripMenuItem.BackColor = SystemColors.Info
+        AplicaciónToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {MinimizarToolStripMenuItem, ToolStripSeparator1, ConfiguraciónToolStripMenuItem, SoporteToolStripMenuItem, ActualizarToolStripMenuItem, ToolStripSeparator2, SalirToolStripMenuItem})
+        AplicaciónToolStripMenuItem.ForeColor = SystemColors.Highlight
+        AplicaciónToolStripMenuItem.Name = "AplicaciónToolStripMenuItem"
+        AplicaciónToolStripMenuItem.Size = New Size(75, 20)
+        AplicaciónToolStripMenuItem.Text = "&Aplicación"
+        ' 
+        ' MinimizarToolStripMenuItem
+        ' 
+        MinimizarToolStripMenuItem.Name = "MinimizarToolStripMenuItem"
+        MinimizarToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.Down
+        MinimizarToolStripMenuItem.Size = New Size(193, 22)
+        MinimizarToolStripMenuItem.Text = "&Minimizar"
+        ' 
+        ' ToolStripSeparator1
+        ' 
+        ToolStripSeparator1.Name = "ToolStripSeparator1"
+        ToolStripSeparator1.Size = New Size(190, 6)
+        ' 
+        ' SoporteToolStripMenuItem
+        ' 
+        SoporteToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DocumentaciónToolStripMenuItem, ReportarErrorToolStripMenuItem})
+        SoporteToolStripMenuItem.Name = "SoporteToolStripMenuItem"
+        SoporteToolStripMenuItem.Size = New Size(193, 22)
+        SoporteToolStripMenuItem.Text = "&Soporte"
+        ' 
+        ' DocumentaciónToolStripMenuItem
+        ' 
+        DocumentaciónToolStripMenuItem.Name = "DocumentaciónToolStripMenuItem"
+        DocumentaciónToolStripMenuItem.ShortcutKeys = Keys.F1
+        DocumentaciónToolStripMenuItem.Size = New Size(178, 22)
+        DocumentaciónToolStripMenuItem.Text = "&Documentación"
+        ' 
+        ' ReportarErrorToolStripMenuItem
+        ' 
+        ReportarErrorToolStripMenuItem.Name = "ReportarErrorToolStripMenuItem"
+        ReportarErrorToolStripMenuItem.ShortcutKeys = Keys.F2
+        ReportarErrorToolStripMenuItem.Size = New Size(178, 22)
+        ReportarErrorToolStripMenuItem.Text = "&Reportar error"
+        ' 
+        ' ActualizarToolStripMenuItem
+        ' 
+        ActualizarToolStripMenuItem.Name = "ActualizarToolStripMenuItem"
+        ActualizarToolStripMenuItem.ShortcutKeys = Keys.F5
+        ActualizarToolStripMenuItem.Size = New Size(193, 22)
+        ActualizarToolStripMenuItem.Text = "&Actualizar"
+        ' 
+        ' ToolStripSeparator2
+        ' 
+        ToolStripSeparator2.Name = "ToolStripSeparator2"
+        ToolStripSeparator2.Size = New Size(190, 6)
+        ' 
+        ' SalirToolStripMenuItem
+        ' 
+        SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
+        SalirToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
+        SalirToolStripMenuItem.Size = New Size(193, 22)
+        SalirToolStripMenuItem.Text = "Sal&ir"
+        ' 
+        ' ConfiguraciónToolStripMenuItem
+        ' 
+        ConfiguraciónToolStripMenuItem.Name = "ConfiguraciónToolStripMenuItem"
+        ConfiguraciónToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.O
+        ConfiguraciónToolStripMenuItem.Size = New Size(193, 22)
+        ConfiguraciónToolStripMenuItem.Text = "&Configuración"
+        ' 
         ' Form1
         ' 
-        AutoScaleDimensions = New SizeF(192F, 192F)
+        AutoScaleDimensions = New SizeF(96F, 96F)
         AutoScaleMode = AutoScaleMode.Dpi
         BackColor = SystemColors.ControlDarkDark
-        ClientSize = New Size(1012, 684)
+        ClientSize = New Size(1022, 716)
         Controls.Add(PictureBox1)
         Controls.Add(TextBox1)
         Controls.Add(Label7)
@@ -436,6 +527,7 @@ Partial Class Form1
         Controls.Add(GroupBox2)
         Controls.Add(Button1)
         Controls.Add(GroupBox1)
+        Controls.Add(MenuStrip1)
         Font = New Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         ForeColor = SystemColors.Info
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -457,6 +549,8 @@ Partial Class Form1
         GroupBox4.ResumeLayout(False)
         GroupBox4.PerformLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        MenuStrip1.ResumeLayout(False)
+        MenuStrip1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -490,5 +584,16 @@ Partial Class Form1
     Friend WithEvents Label8 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents MenuStrip1 As MenuStrip
+    Friend WithEvents AplicaciónToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MinimizarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents SoporteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DocumentaciónToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ReportarErrorToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ActualizarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConfiguraciónToolStripMenuItem As ToolStripMenuItem
 
 End Class

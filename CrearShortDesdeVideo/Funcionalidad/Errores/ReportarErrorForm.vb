@@ -74,8 +74,8 @@ Public Class ReportarErrorForm
         Dim ofd As New OpenFileDialog
         With ofd
             .Multiselect = True
-            .Filter = "Imágenes y documentos|*.*"
-            .Title = "Adjuntar archivos"
+            .Filter = My.Settings.FiltroAdjuntosReporte
+            .Title = My.Settings.FiltroAdjuntos_tituloDialogo
         End With
         Dim res As DialogResult = ofd.ShowDialog()
         If res = DialogResult.OK Then
@@ -114,5 +114,9 @@ Public Class ReportarErrorForm
                                              ListView1.Items.RemoveByKey(o)
                                          End Sub)
         End If
+    End Sub
+
+    Private Sub ReportarErrorForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        tx_mensaje.Text = $"{My.Settings.TextoIssues}:{Environment.NewLine} {My.Settings.UrlIssues} "
     End Sub
 End Class

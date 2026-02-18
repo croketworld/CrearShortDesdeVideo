@@ -23,8 +23,8 @@ Partial Class ReportarErrorForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim ListViewGroup3 As ListViewGroup = New ListViewGroup("Imágenes", HorizontalAlignment.Left)
-        Dim ListViewGroup4 As ListViewGroup = New ListViewGroup("Documentos", HorizontalAlignment.Left)
+        Dim ListViewGroup1 As ListViewGroup = New ListViewGroup("Imágenes", HorizontalAlignment.Left)
+        Dim ListViewGroup2 As ListViewGroup = New ListViewGroup("Documentos", HorizontalAlignment.Left)
         TableLayoutPanel1 = New TableLayoutPanel()
         OK_Button = New Button()
         Cancel_Button = New Button()
@@ -144,11 +144,11 @@ Partial Class ReportarErrorForm
         ListView1.CheckBoxes = True
         ListView1.Columns.AddRange(New ColumnHeader() {ColumnHeader1})
         ListView1.GridLines = True
-        ListViewGroup3.Header = "Imágenes"
-        ListViewGroup3.Name = "ListViewGroup1"
-        ListViewGroup4.Header = "Documentos"
-        ListViewGroup4.Name = "ListViewGroup2"
-        ListView1.Groups.AddRange(New ListViewGroup() {ListViewGroup3, ListViewGroup4})
+        ListViewGroup1.Header = "Imágenes"
+        ListViewGroup1.Name = "ListViewGroup1"
+        ListViewGroup2.Header = "Documentos"
+        ListViewGroup2.Name = "ListViewGroup2"
+        ListView1.Groups.AddRange(New ListViewGroup() {ListViewGroup1, ListViewGroup2})
         ListView1.Location = New Point(25, 321)
         ListView1.Name = "ListView1"
         ListView1.Size = New Size(462, 98)
