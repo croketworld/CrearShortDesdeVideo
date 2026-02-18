@@ -439,6 +439,66 @@ Namespace My
                 Me("Texto_dialogoSeleccionarVideoOrigenTitulo") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property BuscarActualizacionesAlInicio() As Boolean
+            Get
+                Return CType(Me("BuscarActualizacionesAlInicio"),Boolean)
+            End Get
+            Set
+                Me("BuscarActualizacionesAlInicio") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property ActualizarAlSalir() As Boolean
+            Get
+                Return CType(Me("ActualizarAlSalir"),Boolean)
+            End Get
+            Set
+                Me("ActualizarAlSalir") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property PosicionFormulario() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("PosicionFormulario"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("PosicionFormulario") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property IniciarMinimizado() As Boolean
+            Get
+                Return CType(Me("IniciarMinimizado"),Boolean)
+            End Get
+            Set
+                Me("IniciarMinimizado") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("es-ES")>  _
+        Public Property Idioma() As String
+            Get
+                Return CType(Me("Idioma"),String)
+            End Get
+            Set
+                Me("Idioma") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

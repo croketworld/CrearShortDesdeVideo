@@ -100,5 +100,20 @@
     <Setting Name="Texto_dialogoSeleccionarVideoOrigenTitulo" Type="System.String" Scope="User">
       <Value Profile="(Default)">Selecciona el vídeo del que quieres obtener un fragmento</Value>
     </Setting>
+    <Setting Name="BuscarActualizacionesAlInicio" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ActualizarAlSalir" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PosicionFormulario" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="IniciarMinimizado" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Idioma" Type="System.String" Scope="User">
+      <Value Profile="(Default)">es-ES</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
