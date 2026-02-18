@@ -13,9 +13,7 @@ Namespace My
         End Sub
 
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
-            Me.Configapp = New ConfiguracionApp
-            CargarConfig()
-            If Me.Configapp.Actualizaciones.BuscarActualizacionesAlInicio Then BuscarActualizacion()
+            Iniciar(e.CommandLine)
         End Sub
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
@@ -28,6 +26,11 @@ Namespace My
             e.Font = New Font(New FontFamily("Segoe UI"), 14, FontStyle.Regular)
             e.HighDpiMode = HighDpiMode.PerMonitorV2
             e.ColorMode = SystemColorMode.System
+        End Sub
+
+        Private Sub MyApplication_StartupNextInstance(sender As Object, e As StartupNextInstanceEventArgs) Handles Me.StartupNextInstance
+            ProcesarArgumentos(e.CommandLine)
+            Salir()
         End Sub
     End Class
 End Namespace

@@ -57,13 +57,14 @@ Partial Class Form1
         AplicaciónToolStripMenuItem = New ToolStripMenuItem()
         MinimizarToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
+        ConfiguraciónToolStripMenuItem = New ToolStripMenuItem()
         SoporteToolStripMenuItem = New ToolStripMenuItem()
         DocumentaciónToolStripMenuItem = New ToolStripMenuItem()
         ReportarErrorToolStripMenuItem = New ToolStripMenuItem()
         ActualizarToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
         SalirToolStripMenuItem = New ToolStripMenuItem()
-        ConfiguraciónToolStripMenuItem = New ToolStripMenuItem()
+        NotifyIcon1 = New NotifyIcon(components)
         GroupBox1.SuspendLayout()
         CType(NumericUpDown1, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox2.SuspendLayout()
@@ -465,6 +466,13 @@ Partial Class Form1
         ToolStripSeparator1.Name = "ToolStripSeparator1"
         ToolStripSeparator1.Size = New Size(190, 6)
         ' 
+        ' ConfiguraciónToolStripMenuItem
+        ' 
+        ConfiguraciónToolStripMenuItem.Name = "ConfiguraciónToolStripMenuItem"
+        ConfiguraciónToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.O
+        ConfiguraciónToolStripMenuItem.Size = New Size(193, 22)
+        ConfiguraciónToolStripMenuItem.Text = "&Configuración"
+        ' 
         ' SoporteToolStripMenuItem
         ' 
         SoporteToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {DocumentaciónToolStripMenuItem, ReportarErrorToolStripMenuItem})
@@ -505,12 +513,10 @@ Partial Class Form1
         SalirToolStripMenuItem.Size = New Size(193, 22)
         SalirToolStripMenuItem.Text = "Sal&ir"
         ' 
-        ' ConfiguraciónToolStripMenuItem
+        ' NotifyIcon1
         ' 
-        ConfiguraciónToolStripMenuItem.Name = "ConfiguraciónToolStripMenuItem"
-        ConfiguraciónToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.O
-        ConfiguraciónToolStripMenuItem.Size = New Size(193, 22)
-        ConfiguraciónToolStripMenuItem.Text = "&Configuración"
+        NotifyIcon1.Text = "NotifyIcon1"
+        NotifyIcon1.Visible = True
         ' 
         ' Form1
         ' 
@@ -595,5 +601,6 @@ Partial Class Form1
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConfiguraciónToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents NotifyIcon1 As NotifyIcon
 
 End Class

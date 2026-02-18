@@ -532,12 +532,6 @@ Public Class Form1
         NumericUpDown1.Value = ts
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TextBox2.Text = My.Settings.FfmpegPath
-        DateTimePicker2.Value = Date.Today.Add(My.Settings.DuracionPredeterminada)
-        ResizeByMonitorScale()
-    End Sub
-
     Private Sub ResizeByMonitorScale()
         'Exit Sub
         Dim escalado As Integer = GetEscalado()
@@ -559,16 +553,6 @@ Public Class Form1
     End Function
 
 
-    Public Sub New()
-        InitializeComponent()
-
-        DateTimePicker1.MinDate = MinDate()
-        DateTimePicker2.MinDate = MinDate()
-
-        DateTimePicker1.Value = MinDate()
-        DateTimePicker2.Value = MinDate()
-    End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ComprobarTodoOkPaDarle()
 
@@ -577,6 +561,34 @@ Public Class Form1
     Private Sub Form1_Move(sender As Object, e As EventArgs) Handles Me.Move
         ResizeByMonitorScale()
     End Sub
+
+#End Region
+
+#Region "inicio app y form"
+
+    Public Sub New()
+        InitializeComponent()
+
+        DateTimePicker1.MinDate = MinDate()
+        DateTimePicker2.MinDate = MinDate()
+
+        DateTimePicker1.Value = MinDate()
+        DateTimePicker2.Value = MinDate()
+
+        NotifyIcon1.Text = Me.Text
+        NotifyIcon1.Visible = False
+        NotifyIcon1.Icon = Me.Icon
+        AddHandler NotifyIcon1.Click, AddressOf My.Application.Maximizar
+
+    End Sub
+
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextBox2.Text = My.Settings.FfmpegPath
+        DateTimePicker2.Value = Date.Today.Add(My.Settings.DuracionPredeterminada)
+        ResizeByMonitorScale()
+    End Sub
+
 
 #End Region
 

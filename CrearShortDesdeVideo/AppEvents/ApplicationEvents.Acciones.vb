@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+﻿Imports System.Collections.ObjectModel
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports Microsoft.VisualBasic.ApplicationServices
 
 Namespace My
@@ -32,7 +33,31 @@ Namespace My
                 VideoDurationHelper.GetVideoDuration(filepath)
             End If
         End Sub
+
+        Public Sub Maximizar()
+            If MainForm IsNot Nothing Then
+                Me.MainForm.WindowState = FormWindowState.Normal
+                Me.MainForm.Visible = True
+                Me.MainForm.ShowInTaskbar = True
+                If Me.MainForm Is Form1 Then
+                    Dim frm1 As Form1 = Me.MainForm
+                    frm1.NotifyIcon1.Visible = False
+                End If
+
+            End If
+
+
+        End Sub
         Public Sub Minimizar()
+            If MainForm IsNot Nothing Then
+                Me.MainForm.WindowState = FormWindowState.Minimized
+                Me.MainForm.Visible = False
+                Me.MainForm.ShowInTaskbar = False
+                If Me.MainForm Is Form1 Then
+                    Dim frm1 As Form1 = Me.MainForm
+                    frm1.NotifyIcon1.Visible = True
+                End If
+            End If
 
         End Sub
         Public Sub Configuracion()
@@ -52,8 +77,20 @@ Namespace My
         Public Sub Actualizar()
 
         End Sub
+        Private Function ProcesarArgumentos(args As ReadOnlyCollection(Of String)) As Boolean
+            If args IsNot Nothing = False Or args.Count <= 0 Then args = New ReadOnlyCollection(Of String)(Environment.GetCommandLineArgs())
+            Dim argu As String = ParseArgsHelper.ArgumentsToChorizon(args)
 
-
+            'TODO argumentos de la línea de comandos
+            Return False
+        End Function
+        Public Sub Iniciar(Optional args As ReadOnlyCollection(Of String) = Nothing)
+            Dim debeSalir As Boolean = ProcesarArgumentos(args)
+            If debeSalir Then Salir()
+            Me.Configapp = New ConfiguracionApp
+            CargarConfig()
+            If Me.Configapp.Actualizaciones.BuscarActualizacionesAlInicio Then BuscarActualizacion()
+        End Sub
         Public Sub Salir()
             My.Settings.Save()
             If IO.File.Exists(ActualizacionDisponible) And Me.Configapp.Actualizaciones.AutoActualizarAlSalir Then Actualizar()
