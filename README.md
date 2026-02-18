@@ -40,4 +40,7 @@ Actualmente hace la tarea para la que está diseñada, pero pronto hará mucho m
 https://github.com/croketworld/CrearShortDesdeVideo/blob/commander/CrearShortDesdeVideo/Resources/logo.png
 
 
+## Febrero de 2026
 
+Puedes ver la aplicación en su estado pre-release en siguiente vídeo:
+[![Vídeo en versión pre-release](https://img.youtube.com/vi/wuHU2ce5rkU/0.jpg)](https://www.youtube.com/watch?v=wuHU2ce5rkU)
