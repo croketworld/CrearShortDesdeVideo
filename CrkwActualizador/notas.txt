@@ -1,0 +1,31 @@
+ToDo
+
+#	Tareas desglosadas por flujo
+
+##	Flujo 1: Buscar actualizaciones disponibles
+- Recibir por linea de comandos la aplicación que está buscando actualizaciones
+- Realizar una llamada para obtener la última versión disponible de una app
+- Devolver resultado con notas de versión
+
+
+##	Flujo 2: Descargar actualizaciones
+- Obtener un archivo comprimido por descarga web
+- Descomprimir el archivo comprimido con los archivos de la actualización
+
+
+##	Flujo 3: aplicar actualizaciones
+-A) desde un manifiesto, recuperar el directorio 
+	(archivo comprimido ya descomprimido en flujo 2) con el contenido de la actualización a aplicar
+-B) de forma segura (posibilidad de roll-back) aplicar la actualización 
+	(reemplazar binarios y dependencias existentes por los nuevos)
+	* Cerrar aplicación en ejecución, y si se ha cerrado por ésta app para la actualización, reabrir.
+
+
+Posibilidad de :
+-ejecutar en segundo plano sin mostrar la ventana
+-ejecutar sin o con argumentos en primer plano
+-mostrar notas de versión
+-mostrar actualizaciones disponibles
+-buscar actualizaciones y listar todo
+-realizar descarga y actualización manual de aplicaciones
+

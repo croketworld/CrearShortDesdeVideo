@@ -5,4 +5,5 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="CrearShortDesdeVideo/CrearShortDesdeVideo.vbproj" />
+  <Project Path="CrkwActualizador/CrkwActualizador.vbproj" Id="e525eec3-735c-4207-9fc6-006de3036152" />
 </Solution>
